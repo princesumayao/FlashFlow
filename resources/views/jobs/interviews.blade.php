@@ -14,9 +14,9 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h3 class="text-2xl font-extrabold text-white group-hover:text-blue-500 transition-colors duration-300">
-                                    Kenji Umpad Turiano
+                                    Prince Umpad
                                 </h3>
-                                <div class="mt-2 text-lg text-white/80">Applying for: Full Stack Tekken</div>
+                                <div class="mt-2 text-lg text-white/80">Applying for: Full Stack Developer</div>
                                 <div class="text-sm text-white/50">Iriga City</div>
                             </div>
                             <div class="flex flex-col items-end ml-4">
