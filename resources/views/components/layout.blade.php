@@ -19,7 +19,7 @@
         <div>
             <a href="/" class="flex items-center gap-3">
                 <img src="{{ Vite::asset('resources/images/testlogo.svg') }}" class="w-12" alt="Logo">
-                <h1 class="font-bold text-2xl">testifnabagolangungbranch</h1>
+                <h1 class="font-bold text-2xl">FlashFlow</h1>
             </a>
         </div>
 
