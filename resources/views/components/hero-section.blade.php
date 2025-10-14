@@ -5,7 +5,6 @@
     </p>
 
     <form action="/search" method="GET" class="mt-10 flex justify-center">
-{{--        @csrf--}}
         <div class="relative w-full max-w-md">
             <span class="absolute inset-y-0 left-3 flex items-center text-white/30">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
