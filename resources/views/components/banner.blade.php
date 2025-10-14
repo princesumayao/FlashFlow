@@ -7,7 +7,7 @@
             Looking for your next big opportunity?
         </h2>
         <p class="text-lg md:text-xl text-white/80 font-medium mb-6 max-w-xl">
-            Connect with employers who value your skills and ambitions. Start your career journey or take the next step—finding the right job has never been easier.
+            Connect with employers who value your skills and ambitions. Start your career journey or take the next step finding the right job has never been easier.
         </p>
         <div class="flex gap-4 justify-center">
             <a href="/" class="inline-block rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl">
