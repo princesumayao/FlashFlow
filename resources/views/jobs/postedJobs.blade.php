@@ -8,7 +8,6 @@
                 <div class="flex items-start justify-between gap-6 p-6 mb-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl shadow-xl w-full max-w-xl">
                     <div class="flex items-center gap-6">
                         <img src="https://image.tmdb.org/t/p/original/pm462TGFWVHJOJG2NJyLXGINWQq.jpg" alt="Employer Avatar" class="w-20 h-20 rounded-full object-cover" />
-
                         <div>
                             <h2 class="text-2xl font-bold text-white">Mark Taway</h2>
                             <div class="text-blue-200 text-lg">Pili Company</div>
