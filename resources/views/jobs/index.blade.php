@@ -8,73 +8,13 @@
                 <x-job-filter />
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8 mt-6">
-                <x-featured
-                    title="Software Developer"
-                    company="Omsim Corp"
-                    location="Baao, Cam Sur"
-                    type="Full Time"
-                    workLocation="Work From Home"
-                    salary="$80k - $120k"
-                    description="Work Location: Work From Home"
-                    postedDate="2 days ago"
-                />
+                <div class="grid lg:grid-cols-3 gap-8 mt-6">
+                    @foreach($featuredJobs as $job)
+                    <x-featured :$job />
 
-                <x-featured
-                    title="Software Engineer"
-                    company="Mismo Corp"
-                    location="Baao, Cam Sur"
-                    type="Part Time"
-                    workLocation="Onsite"
-                    salary="$80k - $120k"
-                    description="Experience working with RESTful APIs"
-                    postedDate="2 days ago"
-                />
-
-                <x-featured
-                    title="Game Developer"
-                    company="Prime Corp"
-                    location="Baao, Cam Sur"
-                    type="Full Time"
-                    workLocation="Onsite"
-                    salary="$80k - $120k"
-                    description="Experience working with RESTful APIs"
-                    postedDate="2 days ago"
-                />
-
-                <x-featured
-                    title="Cybersecurity"
-                    company="Baao Corp"
-                    location="Baao, Cam Sur"
-                    type="Full Time"
-                    workLocation="Onsite"
-                    salary="$80k - $120k"
-                    description="Experience working with RESTful APIs"
-                    postedDate="2 days ago"
-                />
-
-                <x-featured
-                    title="Web Developer"
-                    company="Bryce Corp"
-                    location="Baao, Cam Sur"
-                    type="Full Time"
-                    workLocation="Work From Home"
-                    salary="$80k - $120k"
-                    description="Experience working with RESTful APIs"
-                    postedDate="2 days ago"
-                />
-
-                <x-featured
-                    title="Network Engineer"
-                    company="Network Corp"
-                    location="Pili, Cam Sur"
-                    type="Full Time"
-                    workLocation="Work From Home"
-                    salary="$80k - $120k"
-                    description="Experience working with RESTful APIs"
-                    postedDate="2 days ago"
-                />
+                    @endforeach
             </div>
+
         </section>
 
         <section class="relative pt-12 pb-6">
@@ -90,56 +30,11 @@
             </div>
 
             <div class="space-y-6">
-                <x-recent
-                    title="Junior Web Designer"
-                    description="Design engaging web interfaces for modern brands."
-                    company="Pixel Studio"
-                    location="Naga City"
-                    type="Full Time"
-                    workLocation="Work From Home"
-                    salary="$30k - $50k"
-                />
-
-                <x-recent
-                    title="Backend Engineer"
-                    description="Basic knowledge of UI/UX design principles"
-                    company="DevCorp"
-                    location="Legazpi City"
-                    type="Full Time"
-                    workLocation="Onsite"
-                    salary="$60k - $90k"
-                />
-
-                <x-recent
-                    title="Frontend Developer"
-                    description="Strong understanding of responsive web design and cross-browser compatibility"
-                    company="DevHub"
-                    location="Iriga City"
-                    type="Full Time"
-                    workLocation="Onsite"
-                    salary="$40k - $70k"
-                />
-
-                <x-recent
-                    title="Frontend Developer"
-                    description="Experience working with RESTful APIs"
-                    company="DevHub"
-                    location="Iriga City"
-                    type="Full Time"
-                    workLocation="Onsite"
-                    salary="$40k - $70k"
-                />
-
-                <x-recent
-                    title="Frontend Developer"
-                    description="Design engaging web interfaces for modern brands."
-                    company="DevHub"
-                    location="Iriga City"
-                    type="Full Time"
-                    workLocation="Onsite"
-                    salary="$40k - $70k"
-                />
+                @foreach($recentJobs as $job)
+                    <x-recent :$job />
+                @endforeach
             </div>
+
         </section>
     </div>
 </x-layout>

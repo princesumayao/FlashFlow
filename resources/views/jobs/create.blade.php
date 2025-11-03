@@ -7,7 +7,7 @@
             <div class="relative z-10 max-w-6xl mx-auto bg-gradient-to-br from-white/30 via-black/10 to-black/90 rounded-2xl border border-zinc-700 shadow-xl p-6">
                 <h2 class="text-2xl font-extrabold text-white mb-1">Post a New Job</h2>
                 <div class="mb-4 border-t border-white/10"></div>
-                <form action="/jobs" method="POST" class="space-y-4">
+                <x-form action="/jobs" method="POST" class="space-y-4">
                 @csrf
                 <div>
                     <label class="block text-white font-bold mb-2">Job Title</label>
@@ -62,7 +62,7 @@
                 <button type="submit" class="w-full rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl">
                     Post Job
                 </button>
-            </form>
+                </x-form>
         </div>
     </section>
 </div>

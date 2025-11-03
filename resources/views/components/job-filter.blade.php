@@ -1,24 +1,22 @@
-<form action="/jobs" method="GET" class="flex gap-2">
-{{--    @csrf--}}
+<x-form action="/" class="flex gap-2">
     <select name="type" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">Job Types</option>
-        <option class="bg-black/80" value="full-time">Full Time</option>
-        <option class="bg-black/80" value="part-time">Part Time</option>
-        <option class="bg-black/80" value="contract">Full Schedule</option>
+        <option class="bg-black/80" value="Full Time" {{ request('type') == 'Full Time' ? 'selected' : '' }}>Full Time</option>
+        <option class="bg-black/80" value="Part Time" {{ request('type') == 'Part Time' ? 'selected' : '' }}>Part Time</option>
     </select>
 
     <select name="location" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">All Locations</option>
-        <option class="bg-black/80" value="Baao, Cam Sur">Baao, Cam Sur</option>
-        <option class="bg-black/80" value="Naga City">Naga City</option>
-        <option class="bg-black/80" value="Legazpi City">Legazpi City</option>
-        <option class="bg-black/80" value="Iriga City">Iriga City</option>
+        <option class="bg-black/80" value="Baao, Cam Sur" {{ request('location') == 'Baao, Cam Sur' ? 'selected' : '' }}>Baao, Cam Sur</option>
+        <option class="bg-black/80" value="Naga City" {{ request('location') == 'Naga City' ? 'selected' : '' }}>Naga City</option>
+        <option class="bg-black/80" value="Legazpi City" {{ request('location') == 'Legazpi City' ? 'selected' : '' }}>Legazpi City</option>
+        <option class="bg-black/80" value="Iriga City" {{ request('location') == 'Iriga City' ? 'selected' : '' }}>Iriga City</option>
     </select>
 
     <select name="work_location" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">Work Area</option>
-        <option class="bg-black/80" value="Work From Home">Work From Home</option>
-        <option class="bg-black/80" value="Onsite">Onsite</option>
+        <option class="bg-black/80" value="Work From Home" {{ request('work_location') == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
+        <option class="bg-black/80" value="Onsite" {{ request('work_location') == 'Onsite' ? 'selected' : '' }}>Onsite</option>
     </select>
 
     <button type="submit" class="cursor-pointer inline-block rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-3 py-1.5 transition hover:shadow-xl">
@@ -29,4 +27,4 @@
             Filter
         </span>
     </button>
-</form>
+</x-form>

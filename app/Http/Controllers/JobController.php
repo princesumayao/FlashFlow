@@ -2,14 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        return view('jobs.index');
+        $featuredJobs = Job::where('featured', true)->where('status', 'active')->latest()->take(6)->get();
+
+        $query = Job::where('status', 'active');
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        if ($request->filled('work_location')) {
+            $query->where('work_location', $request->work_location);
+        }
+
+        $recentJobs = $query->latest()->take(10)->get();
+
+        return view('jobs.index', [
+            'featuredJobs' => $featuredJobs,
+            'recentJobs' => $recentJobs
+        ]);
     }
 
     public function jobs()

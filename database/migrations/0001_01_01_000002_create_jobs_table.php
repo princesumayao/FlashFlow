@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Employer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +14,17 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('queue')->index();
-            $table->longText('payload');
-            $table->unsignedTinyInteger('attempts');
-            $table->unsignedInteger('reserved_at')->nullable();
-            $table->unsignedInteger('available_at');
-            $table->unsignedInteger('created_at');
+            $table->foreignIdFor(Employer::class)->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('description');
+            $table->string('location');
+            $table->enum('type', ['Full Time', 'Part Time']);
+            $table->enum('work_location', ['Onsite', 'Work From Home']);
+            $table->decimal('salary_min', 10, 2)->nullable();
+            $table->decimal('salary_max', 10, 2)->nullable();
+            $table->boolean('featured')->default(false);
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->timestamps();
         });
 
         Schema::create('job_batches', function (Blueprint $table) {
