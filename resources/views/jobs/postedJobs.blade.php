@@ -9,10 +9,10 @@
                     <div class="flex items-center gap-6">
                         <img src="https://image.tmdb.org/t/p/original/pm462TGFWVHJOJG2NJyLXGINWQq.jpg" alt="Employer Avatar" class="w-20 h-20 rounded-full object-cover" />
                         <div>
-                            <h2 class="text-2xl font-bold text-white">Mark Taway</h2>
-                            <div class="text-blue-200 text-lg">Pili Company</div>
-                            <div class="text-white/60 text-sm">Naga City</div>
-                            <div class="text-white/60 text-sm mb-2">pilicompany@gmail.com</div>
+                            <h2 class="text-2xl font-bold text-white">{{ $employer->user->first_name }} {{ $employer->user->last_name }}</h2>
+                            <div class="text-blue-200 text-lg">{{ $employer->company_name }}</div>
+                            <div class="text-white/60 text-sm">{{ $employer->location }}</div>
+                            <div class="text-white/60 text-sm mb-2">{{ $employer->user->email }}</div>
                             <div class="flex gap-2 mt-2">
                                 <a href="https://instagram.com/" target="_blank" class="rounded-full bg-white/10 hover:bg-pink-500/80 text-white p-2 transition">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,29 +50,9 @@
         </div>
 
             <div class="space-y-6">
-
-                <x-job-card
-                    title="Backend Developer"
-                    company="Pili Company"
-                    location="Naga City"
-                    type="Part Time"
-                    salary="$40k - $70k"
-                    description="Part-time work (4 hours/day) at $3.41/hour ($240.00/month)"
-                    posted-date="Posted 5 days ago"
-                    edit-url="/jobs/2/edit"
-                    delete-url="/jobs/2"
-                />
-                <x-job-card
-                    title="Frontend Developer"
-                    company="Pili Company"
-                    location="Naga City"
-                    type="Full Time"
-                    salary="$60k - $90k"
-                    description="Full-time work (8 hours/day) at $2.73/hour ($480.00/month)"
-                    posted-date="Posted 3 days ago"
-                    edit-url="/jobs/1/edit"
-                    delete-url="/jobs/1"
-                />
+                @foreach($jobs as $job)
+                    <x-job-card :$job />
+                @endforeach
             </div>
         </section>
 

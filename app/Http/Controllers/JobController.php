@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -30,11 +33,13 @@ class JobController extends Controller
         ]);
     }
 
-    public function jobs()
+    public function jobs($id)
     {
-        return view('jobs.postedJobs');
-    }
+        $employer = Employer::with('user')->findOrFail($id);
+        $jobs = $employer->jobs()->latest()->get();
 
+        return view('jobs.postedJobs', compact('employer', 'jobs'));
+    }
     public function interviews()
     {
         return view('jobs.interviews');

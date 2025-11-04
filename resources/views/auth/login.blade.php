@@ -11,12 +11,26 @@
             <div class="text-center text-white font-extrabold text-3xl mb-2 drop-shadow-lg tracking-wide">FlashFlow</div>
             <h2 class="text-4xl font-extrabold text-white mb-8 text-center">Welcome Back!</h2>
 
-                <form action="/" method="get" class="space-y-5">
+                <x-form action="/login" method="POST" class="space-y-5">
                     @csrf
-                    <input type="text" name="email" placeholder="Email" class="w-full px-5 py-4 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition">
-                    <input type="password" name="password" placeholder="Password" class="w-full px-5 py-4 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition">
-                    <input value="Login" type="submit" class="cursor-pointer w-full rounded-lg border bg-white text-black font-semibold text-lg shadow-lg px-6 py-4 transition hover:shadow-xl"/>
-                </form>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        class="w-full px-5 py-4 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition"
+                    >
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        class="w-full px-5 py-4 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition"
+                    >
+                    <input
+                        value="Login"
+                        type="submit"
+                        class="cursor-pointer w-full rounded-lg border bg-white text-black font-semibold text-lg shadow-lg px-6 py-4 transition hover:shadow-xl"
+                    />
+                </x-form>
 
                 <div class="my-8 flex items-center gap-4">
                     <div class="flex-1 h-px bg-white/10"></div>

@@ -25,7 +25,9 @@
 
         <div class="space-x-6 font-bold flex items-center">
             <a href="/">Home</a>
-            <a href="/jobs">Your Jobs</a>
+            @auth
+            <a href="/jobs/{{ Auth::user()->id }}">Your Jobs</a>
+            @endauth
             <a href="/interviews">Interviews</a>
 
             <a href="/jobs/create"
@@ -38,9 +40,9 @@
                 </span>
             </a>
 
-            <form method="get" action="/login">
+            <form method="POST" action="/logout">
                 @csrf
-{{--                @method('DELETE')--}}
+                @method('DELETE')
                 <button class="cursor-pointer inline-block rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-3 py-1.5 transition hover:shadow-xl">
                     <span class="flex items-center gap-2">
                       Log Out
