@@ -5,7 +5,7 @@
         <section class="pt-10">
             <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
                 <x-section-header title="Featured Jobs" />
-                <x-job-filter />
+                <x-job-filter :$locations />
             </div>
 
                 <div class="grid lg:grid-cols-3 gap-8 mt-6">

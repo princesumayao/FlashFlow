@@ -10,29 +10,16 @@
 
             <div class="space-y-6">
                 <h2 class="text-2xl font-bold mb-4">Pending Applicants</h2>
-                <x-interview-card
-                    name="Prince Umpad"
-                    role="Full Stack Developer"
-                    location="Iriga City"
-                    status="Pending"
-                    time="Submitted 2 days ago"
-                    message='"that was ez 😎"'
-                    approveAction="/interviews/chuchu/approve"
-                    disapproveAction="/interviews/chuchu/disapprove"
-                />
+                @foreach($pendingInterviews as $interview)
+                    <x-interview-card :$interview />
+                @endforeach
 
                 <div class="mt-10">
                     <h2 class="text-2xl font-bold mb-4">Approved Applicants</h2>
-                    <x-interview-card
-                        name="Maria D. Magiba"
-                        role="Backend Engineer"
-                        location="Naga City"
-                        status="Approved"
-                        time="Approved 1 day ago"
-                        message='"Sup Chat!"'
-                    />
+                    @foreach($approvedInterviews as $interview)
+                        <x-interview-card :$interview />
+                    @endforeach
                 </div>
-
             </div>
         </section>
     </div>

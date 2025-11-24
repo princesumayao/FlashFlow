@@ -1,17 +1,23 @@
-<x-form action="/" class="flex gap-2">
+<x-form action="/home" class="flex gap-2">
     <select name="type" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">Job Types</option>
         <option class="bg-black/80" value="Full Time" {{ request('type') == 'Full Time' ? 'selected' : '' }}>Full Time</option>
         <option class="bg-black/80" value="Part Time" {{ request('type') == 'Part Time' ? 'selected' : '' }}>Part Time</option>
     </select>
 
-    <select name="location" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
-        <option class="bg-black/80" value="">All Locations</option>
-        <option class="bg-black/80" value="Baao, Cam Sur" {{ request('location') == 'Baao, Cam Sur' ? 'selected' : '' }}>Baao, Cam Sur</option>
-        <option class="bg-black/80" value="Naga City" {{ request('location') == 'Naga City' ? 'selected' : '' }}>Naga City</option>
-        <option class="bg-black/80" value="Legazpi City" {{ request('location') == 'Legazpi City' ? 'selected' : '' }}>Legazpi City</option>
-        <option class="bg-black/80" value="Iriga City" {{ request('location') == 'Iriga City' ? 'selected' : '' }}>Iriga City</option>
-    </select>
+    <input
+        type="text"
+        name="location"
+        placeholder="Enter location..."
+        value="{{ request('location') }}"
+        list="locations"
+        class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-red-100 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl placeholder-gray-300"
+    >
+    <datalist id="locations">
+        @foreach($locations as $location)
+            <option value="{{ $location }}">{{ $location }}</option>
+        @endforeach
+    </datalist>
 
     <select name="work_location" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">Work Area</option>

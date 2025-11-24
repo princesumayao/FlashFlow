@@ -1,79 +1,68 @@
-@props([
-    'name' => 'Unnamed',
-    'role' => '',
-    'location' => '',
-    'status' => '',
-    'time' => '',
-    'message' => '',
-    'approveAction' => null,
-    'disapproveAction' => null,
-])
+@props(['interview'])
 
-<div class="flex flex-col p-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl border border-zinc-700 shadow-xl group transition-all duration-300">
+<div class="flex flex-col p-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl border border-zinc-700 shadow-xl group transition-all duration-300 my-5">
     <div class="flex justify-between items-start">
         <div>
-            @if($status === 'Approved')
+            @if($interview->status === 'approved')
                 <h3 class="text-2xl font-extrabold text-white group-hover:text-green-400 transition-colors duration-300">
-                    {{ $name }}
+                    {{ $interview->application->user->first_name }} {{ $interview->application->user->last_name }}
                 </h3>
-            @elseif($status === 'Pending')
+            @elseif($interview->status === 'pending')
                 <h3 class="text-2xl font-extrabold text-white group-hover:text-blue-400 transition-colors duration-300">
-                    {{ $name }}
+                    {{ $interview->application->user->first_name }} {{ $interview->application->user->last_name }}
                 </h3>
             @endif
 
             <div class="mt-2 text-lg text-white/80">
-                {{ $role ? "Applying for: {$role}" : '' }}
+                Applying for: {{ $interview->application->job->title }}
             </div>
-            <div class="text-sm text-white/50">{{ $location }}</div>
+            <div class="text-sm text-white/50">{{ $interview->application->job->location }}</div>
         </div>
 
         <div class="flex flex-col items-end ml-4">
+            @if($interview->status === 'approved')
+                <span class="bg-green-800/20 text-green-400 text-xs font-semibold px-4 py-1.5 rounded-xl mb-2">{{ ucfirst($interview->status) }}</span>
+            @elseif($interview->status === 'pending')
+                <span class="bg-blue-800/20 text-blue-400 text-xs font-semibold px-4 py-1.5 rounded-xl mb-2">{{ ucfirst($interview->status) }}</span>
+            @endif
 
-            @if($status === 'Approved')
-                <span class="bg-green-800/20 text-green-400 text-xs font-semibold px-4 py-1.5 rounded-xl mb-2">{{ $status }}</span>
-            @elseif($status === 'Pending')
-                <span class="bg-blue-800/20 text-blue-400 text-xs font-semibold px-4 py-1.5 rounded-xl mb-2">{{ $status }}</span>
-            @endif()
-
-            @if($time)
-                <span class="text-lg font-bold text-white/90 mb-2">{{ $time }}</span>
+            @if($interview->status === 'pending')
+                <span class="text-lg font-bold text-white/90 mb-2">Submitted {{ $interview->created_at->diffForHumans() }}</span>
+            @else
+                <span class="text-lg font-bold text-white/90 mb-2">Approved {{ ($interview->approved_at ?? $interview->updated_at ?? $interview->created_at)->diffForHumans() }}</span>
             @endif
         </div>
     </div>
 
     <div class="my-4 border-t border-white/10"></div>
 
-    @if($message)
+    @if($interview->application->message)
         <div class="text-base text-white/70 mb-4">
-            {{ $message }}
+            {{ $interview->application->message }}
         </div>
     @endif
 
     <div class="flex gap-2 justify-end">
-        @if($approveAction)
-                <x-form method="POST" action="{{ $approveAction }}">
-                    <button type="submit"
-                            class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-md shadow-lg px-4 py-1.5 transition-all duration-200 hover:from-zinc-700 hover:to-zinc-900 hover:text-white hover:border-white/20 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                        </svg>
-                        Approve
-                    </button>
-                </x-form>
-        @endif
+        @if($interview->status === 'pending')
+            <x-form method="POST" action="/interviews/{{ $interview->id }}/approve">
+                <button type="submit"
+                        class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-md shadow-lg px-4 py-1.5 transition-all duration-200 hover:from-zinc-700 hover:to-zinc-900 hover:text-white hover:border-white/20 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                    </svg>
+                    Approve
+                </button>
+            </x-form>
 
-        @if($disapproveAction)
-                <x-form method="POST" action="{{ $disapproveAction }}">
-                    <button type="submit"
-                            class="inline-flex items-center gap-2 rounded-lg border bg-white text-black font-semibold text-md shadow-lg px-4 py-1.5 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:border-gray-300 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                        Disapprove
-                    </button>
-                </x-form>
+            <x-form method="POST" action="/interviews/{{ $interview->id }}/disapprove">
+                <button type="submit"
+                        class="inline-flex items-center gap-2 rounded-lg border bg-white text-black font-semibold text-md shadow-lg px-4 py-1.5 transition-all duration-200 hover:bg-gray-100 hover:text-black hover:border-gray-300 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                    Disapprove
+                </button>
+            </x-form>
         @endif
     </div>
 </div>
-

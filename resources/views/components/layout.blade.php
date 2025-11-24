@@ -17,14 +17,14 @@
 <div class="px-10">
     <nav class="flex justify-between items-center bg-red/10 py-4 border-b border-white/10">
         <div>
-            <a href="/" class="flex items-center gap-3">
+            <a href="/home" class="flex items-center gap-3">
                 <img src="{{ Vite::asset('resources/images/testlogo.svg') }}" class="w-12" alt="Logo">
                 <h1 class="font-bold text-2xl">FlashFlow</h1>
             </a>
         </div>
 
         <div class="space-x-6 font-bold flex items-center">
-            <a href="/">Home</a>
+            <a href="/home">Home</a>
             @auth
             <a href="/jobs/{{ Auth::user()->id }}">Your Jobs</a>
             @endauth
