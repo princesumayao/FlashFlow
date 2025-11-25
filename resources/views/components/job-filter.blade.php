@@ -1,15 +1,14 @@
-<x-form action="/home" class="flex gap-2">
+<x-form action="/filter" class="flex gap-2">
     <select name="type" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">Job Types</option>
-        <option class="bg-black/80" value="Full Time" {{ request('type') == 'Full Time' ? 'selected' : '' }}>Full Time</option>
-        <option class="bg-black/80" value="Part Time" {{ request('type') == 'Part Time' ? 'selected' : '' }}>Part Time</option>
+        <option class="bg-black/80" value="Full Time">Full Time</option>
+        <option class="bg-black/80" value="Part Time">Part Time</option>
     </select>
 
     <input
         type="text"
         name="location"
         placeholder="Enter location..."
-        value="{{ request('location') }}"
         list="locations"
         class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-red-100 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl placeholder-gray-300"
     >
@@ -21,8 +20,8 @@
 
     <select name="work_location" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
         <option class="bg-black/80" value="">Work Area</option>
-        <option class="bg-black/80" value="Work From Home" {{ request('work_location') == 'Work From Home' ? 'selected' : '' }}>Work From Home</option>
-        <option class="bg-black/80" value="Onsite" {{ request('work_location') == 'Onsite' ? 'selected' : '' }}>Onsite</option>
+        <option class="bg-black/80" value="Work From Home">Work From Home</option>
+        <option class="bg-black/80" value="Onsite">Onsite</option>
     </select>
 
     <button type="submit" class="cursor-pointer inline-block rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-3 py-1.5 transition hover:shadow-xl">

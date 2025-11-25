@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredController;
 use App\Http\Controllers\SearchController;
@@ -12,9 +13,14 @@ Route::post('/login', [SessionController::class, 'store']);
 Route::delete('/logout', [SessionController::class, 'destroy']);
 
 Route::get('/home', [JobController::class, 'index']);
+
+Route::get('/filter', FilterController::class);
+
+Route::get('/jobs/create', [JobController::class, 'create']);
 Route::get('/jobs/{id}', [JobController::class, 'jobs']);
 Route::get('/interviews',[JobController::class, 'interviews']);
-Route::get('/jobs/create', [JobController::class, 'create']);
+Route::post('/jobs', [JobController::class, 'store']);
+
 
 Route::get('/search', SearchController::class);
 

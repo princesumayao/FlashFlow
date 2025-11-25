@@ -9,6 +9,7 @@
                 <div class="mb-4 border-t border-white/10"></div>
                 <x-form action="/jobs" method="POST" class="space-y-4">
                 @csrf
+
                 <div>
                     <label class="block text-white font-bold mb-2">Job Title</label>
                     <input type="text" name="title" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
@@ -16,8 +17,11 @@
 
                 <div>
                     <label class="block text-white font-bold mb-2">Company Name</label>
-                    <input type="text" name="company" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
-                </div>
+                    <input type="text"
+                           value="{{ $employer->company_name }}"
+                           class="w-full px-4 py-3 rounded-xl bg-white/5 text-gray-300 border border-white/10 cursor-not-allowed opacity-75"
+                           readonly
+                           disabled></div>
 
                 <div>
                     <label class="block text-white font-bold mb-2">Location</label>
@@ -45,12 +49,12 @@
                     <div class="flex gap-4">
                         <div class="w-1/2">
                             <label class="block text-white font-bold mb-2">Starting Salary</label>
-                            <input type="text" name="salary_min" placeholder="$ 40,000" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
+                            <input type="number" name="salary_min" placeholder="40000" step="0.01" min="0" value="{{ old('salary_min') }}" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
                         </div>
 
                         <div class="w-1/2">
                             <label class="block text-white font-bold mb-2">Highest Salary</label>
-                            <input type="text" name="salary_max" placeholder="$ 70,000" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
+                            <input type="number" name="salary_max" placeholder="70000" step="0.01" min="0" value="{{ old('salary_max') }}" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
                         </div>
                     </div>
 
@@ -59,9 +63,8 @@
                     <input type="text" name="quote" class="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
                 </div>
 
-                <button type="submit" class="w-full rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl">
-                    Post Job
-                </button>
+                <input type="submit" value="Post Job" class="w-full rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl">
+
                 </x-form>
         </div>
     </section>

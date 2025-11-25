@@ -10,10 +10,10 @@
             Connect with employers who value your skills and ambitions. Start your career journey or take the next step finding the right job has never been easier.
         </p>
         <div class="flex gap-4 justify-center">
-            <a href="/" class="inline-block rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl">
+            <a href="/home" class="inline-block rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl">
                 <span class="flex items-center gap-2">Get Started</span>
             </a>
-            <a href="/" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-6 py-3 overflow-hidden transition hover:shadow-xl">
+            <a href="/home" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-6 py-3 overflow-hidden transition hover:shadow-xl">
                 <span class="flex items-center gap-2">Browse Jobs</span>
             </a>
         </div>
