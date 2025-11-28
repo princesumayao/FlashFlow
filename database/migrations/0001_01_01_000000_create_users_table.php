@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone', 20)->nullable();
             $table->enum('user_type', ['applicant', 'employer']);
+            $table->string('avatar')->nullable();
             $table->timestamps();
-        });
+        });;
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

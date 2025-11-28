@@ -117,6 +117,61 @@ class JobController extends Controller
         return view('jobs.interviews', compact('pendingInterviews', 'approvedInterviews'));
     }
 
+    public function edit(Job $job)
+    {
+        // Check if user owns this job
+        if ($job->employer_id !== Auth::user()->employer->id) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+
+        $employer = Auth::user()->employer;
+        return view('jobs.edit', compact('job', 'employer'));
+    }
+
+    public function update(Request $request, Job $job)
+    {
+        // Check if user owns this job
+        if ($job->employer_id !== Auth::user()->employer->id) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'type' => 'required|in:Full Time,Part Time',
+            'work_location' => 'required|in:Work From Home,Onsite',
+            'salary_min' => 'required|numeric|min:0',
+            'salary_max' => 'required|numeric|min:0',
+            'quote' => 'required|string'
+        ]);
+
+        $job->update([
+            'title' => $request->title,
+            'description' => $request->quote,
+            'location' => $request->location,
+            'type' => $request->type,
+            'work_location' => $request->work_location,
+            'salary_min' => $request->salary_min,
+            'salary_max' => $request->salary_max,
+        ]);
+
+        return redirect("/jobs/{$job->employer_id}")->with('success', 'Job updated successfully!');
+    }
+
+    public function destroy(Job $job)
+    {
+        // Check if user owns this job
+        if ($job->employer_id !== Auth::user()->employer->id) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+
+        $job->delete();
+
+        return redirect()->back()->with('success', 'Job deleted successfully!');
+    }
+
+    // shhhhhh dyan muna kayo
+
     public function approveInterview(Interview $interview)
     {
         $interview->update([
