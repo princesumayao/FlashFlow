@@ -1,4 +1,4 @@
-<x-layout2>
+<x-layout>
     <div class="relative">
         <img src="{{ Vite::asset('resources/images/left-design.svg') }}" alt="" class="fixed left-10 top-1/2 -translate-y-2/3 w-80 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
         <img src="{{ Vite::asset('resources/images/right-design.svg') }}" alt="" class="fixed right-10 top-2/3 -translate-y-1/2 w-80 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
@@ -49,4 +49,4 @@
             </div>
         </section>
     </div>
-</x-layout2>
+</x-layout>

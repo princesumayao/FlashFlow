@@ -10,7 +10,7 @@
             <div class="text-center text-white font-extrabold text-3xl mb-2 drop-shadow-lg tracking-wide">FlashFlow</div>
             <h2 class="text-4xl font-extrabold text-white mb-6 text-center">Create Employer Account</h2>
 
-            <form action="/login" method="get" class="space-y-4">
+            <form action="/registerEmployer" method="POST" class="space-y-4">
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -27,7 +27,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label for="company" class="block text-white/70 text-md font-medium mb-1">Company Name</label>
-                        <input type="text" id="company" name="company" placeholder="Company Name" class="w-full px-4 py-3 rounded-lg bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
+                        <input type="text" id="company_name" name="company_name" placeholder="Company Name" class="w-full px-4 py-3 rounded-lg bg-white/10 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition" required>
                     </div>
 
                     <div>
@@ -65,7 +65,7 @@
             </form>
 
             <div class="mt-6 text-center">
-                <a href="/login" class="text-blue-400 hover:underline">Already have an account?</a>
+                <a href="/" class="text-blue-400 hover:underline">Already have an account?</a>
             </div>
         </div>
     </div>

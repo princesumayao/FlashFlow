@@ -7,7 +7,7 @@
             <div class="flex justify-center">
                 <div class="flex items-start justify-between gap-6 p-6 mb-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl shadow-xl w-full max-w-xl">
                     <div class="flex items-center gap-4">
-                        <img src="{{ $employer->user->avatar ? asset('storage/' . $employer->user->avatar) : Vite::asset('resources/images/default.svg') }}"
+                        <img src="{{ $employer->user->avatar ? asset('storage/' . $employer->user->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($employer->user->first_name . ' ' . $employer->user->last_name) . '&size=128' }}"
                              alt="Profile Picture"
                              class="w-24 h-24 rounded-full object-cover border-4 border-white/20" />
                         <div>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/employer/profile/edit"
+                    <a href="/profile/edit"
                        class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg font-semibold border shadow hover:bg-gray-100 hover:text-black hover:border-gray-300 transition self-start">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />

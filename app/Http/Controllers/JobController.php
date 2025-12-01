@@ -192,11 +192,6 @@ class JobController extends Controller
         return redirect()->back()->with('success', 'Interview disapproved successfully');
     }
 
-    public function applicantView()
-    {
-        return view('jobs.applicantView');
-    }
-
     public function show()
     {
         return view('jobs.showJobs');
@@ -213,6 +208,10 @@ class JobController extends Controller
 
     public function profileApplicant()
     {
-        return view('jobs.profileApplicant');
+        $user = Auth::user();
+        $applicant = $user->applicant;
+        $credentials = $user->credentials; // Add this line
+
+        return view('jobs.profileApplicant', compact('user', 'applicant', 'credentials'));
     }
 }

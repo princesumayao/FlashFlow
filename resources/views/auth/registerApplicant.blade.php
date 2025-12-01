@@ -11,7 +11,7 @@
             <div class="text-center text-white font-extrabold text-3xl mb-2 drop-shadow-lg tracking-wide">FlashFlow</div>
             <h2 class="text-4xl font-extrabold text-white mb-6 text-center">Create Applicant Account</h2>
 
-            <form action="/login" method="get" class="space-y-4">
+            <form action="/registerApplicant" method="POST" class="space-y-4">
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -53,7 +53,7 @@
             </form>
 
             <div class="mt-6 text-center">
-                <a href="/login" class="text-blue-400 hover:underline">Already have an account?</a>
+                <a href="/" class="text-blue-400 hover:underline">Already have an account?</a>
             </div>
         </div>
     </div>

@@ -17,8 +17,8 @@ Route::get('/home', [JobController::class, 'index']);
 Route::get('/filter', FilterController::class);
 
 // posted jobs routes
-Route::get('/employer/profile/edit', [RegisteredController::class, 'editEmployer']);
-Route::put('/employer/profile', [RegisteredController::class, 'updateEmployer']);
+Route::get('/profile/edit', [RegisteredController::class, 'editProfile']);
+Route::put('/profile', [RegisteredController::class, 'updateProfile']);
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
 Route::put('/jobs/{job}', [JobController::class, 'update']);
 Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
@@ -32,10 +32,10 @@ Route::post('/jobs', [JobController::class, 'store']);
 Route::get('/search', SearchController::class);
 
 Route::get('/registerEmployer', [RegisteredController::class, 'createEmployer']);
+Route::post('/registerEmployer', [RegisteredController::class, 'storeEmployer']);
 
 Route::get('/registerApplicant', [RegisteredController::class, 'createApplicant']);
-
-Route::get('/applicant/home', [JobController::class, 'applicantView']);
+Route::post('/registerApplicant', [RegisteredController::class, 'storeApplicant']);
 
 Route::get('/jobs/1',[JobController::class, 'show']);
 

@@ -25,12 +25,24 @@ class User extends Authenticatable
         'phone',
         'user_type',
         'avatar',
+        'company_name',
     ];
 
     public function employer()
     {
         return $this->hasOne(Employer::class);
     }
+
+    public function applicant()
+    {
+        return $this->hasOne(Applicant::class);
+    }
+
+    public function credentials()
+    {
+        return $this->hasMany(Credential::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
