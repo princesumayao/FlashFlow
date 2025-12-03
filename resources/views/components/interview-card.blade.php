@@ -1,4 +1,4 @@
-@props(['interview'])
+@props(['interview', 'viewType'])
 
 <div class="flex flex-col p-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl border border-zinc-700 shadow-xl group transition-all duration-300 my-5">
     <div class="flex justify-between items-start">
@@ -43,7 +43,18 @@
     @endif
 
     <div class="flex gap-2 justify-end">
-        @if($interview->status === 'pending')
+        @if($viewType === 'employer' && $interview->application->resume_path)
+            <a href="{{ Storage::url($interview->application->resume_path) }}"
+               target="_blank"
+               class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-md shadow-lg px-4 py-1.5 transition-all duration-200 hover:from-zinc-700 hover:to-zinc-900 hover:text-white hover:border-white/20 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                View Resume
+            </a>
+        @endif
+
+        @if($interview->status === 'pending' && $viewType === 'employer')
             <x-form method="POST" action="/interviews/{{ $interview->id }}/approve">
                 <button type="submit"
                         class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-md shadow-lg px-4 py-1.5 transition-all duration-200 hover:from-zinc-700 hover:to-zinc-900 hover:text-white hover:border-white/20 cursor-pointer">

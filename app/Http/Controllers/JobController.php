@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\Employer;
 use App\Models\Interview;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class JobController extends Controller
 {
+
+    use AuthorizesRequests;
     //
     public function index()
     {
         $featuredJobs = Job::where('featured', true)->where('status', 'active')->latest()->take(6)->get();
-        $recentJobs = Job::where('status', 'active')->latest()->take(10)->get();
+        $recentJobs = Job::where('status', 'active')->latest()->paginate(5);
 
         $locations = Job::where('status', 'active')
             ->distinct()
@@ -39,7 +42,7 @@ class JobController extends Controller
 
         // Check if user is an employer
         if (Auth::user()->user_type !== 'employer') {
-            return redirect('/applicant/home')->with('error', 'Access denied');
+            return redirect('/home')->with('error', 'Access denied');
         }
 
         // Check if user has employer profile
@@ -62,10 +65,10 @@ class JobController extends Controller
             'work_location' => 'required|in:Work From Home,Onsite',
             'salary_min' => 'required|numeric|min:0',
             'salary_max' => 'required|numeric|min:0',
-            'quote' => 'required|string'
+            'quote' => 'required|string',
+            'featured' => 'nullable|boolean'
         ]);
 
-        // Get the current user's employer record
         $employer = Auth::user()->employer;
 
         if (!$employer) {
@@ -81,48 +84,139 @@ class JobController extends Controller
             'work_location' => $request->work_location,
             'salary_min' => $request->salary_min,
             'salary_max' => $request->salary_max,
+            'featured' => $request->has('featured') ? true : false,
             'status' => 'active'
         ]);
 
         return redirect('/home')->with('success', 'Job posted successfully!');
     }
+    public function featured()
+    {
+        $jobs = Job::where('featured', true)
+            ->where('status', 'active')
+            ->latest()
+            ->get();
+
+        return view('jobs.result', compact('jobs'));
+    }
     public function jobs($id)
     {
         $employer = Employer::with('user')->findOrFail($id);
-        $jobs = $employer->jobs()->latest()->get();
 
+        // Only allow users to view their own employer profile
+        if (!Auth::user()->employer || Auth::user()->employer->id != $employer->id) {
+            return redirect('/home')->with('error', 'You can only view your own profile.');
+        }
+
+        $jobs = $employer->jobs()->latest()->get();
         return view('jobs.postedJobs', compact('employer', 'jobs'));
+    }
+
+    public function allJobs($id)
+    {
+        $employer = Employer::with('user')->findOrFail($id);
+
+        // Only the owner can see all jobs (including inactive)
+        if (Auth::user()->employer && Auth::user()->employer->id === $employer->id) {
+            $jobs = $employer->jobs()->latest()->get();
+            return view('jobs.allJobs', compact('jobs', 'employer'));
+        }
+
+        return redirect('/employer/' . auth()->user()->employer->id)->with('error', 'You can only view your own posted jobs.');
     }
     public function interviews()
     {
-        // Get the current employer
-        $employer = Auth::user()->employer;
+        $user = Auth::user();
 
-        // Get applications for jobs posted by this employer with pending interviews
-        $pendingInterviews = Interview::with([
-            'application.job.employer',
-            'application.user'
-        ])->whereHas('application.job', function($query) use ($employer) {
-            $query->where('employer_id', $employer->id);
-        })->where('status', 'pending')->get();
+        if ($user->user_type === 'employer') {
+            $employer = $user->employer;
 
-        // Get approved interviews
-        $approvedInterviews = Interview::with([
-            'application.job.employer',
-            'application.user'
-        ])->whereHas('application.job', function($query) use ($employer) {
-            $query->where('employer_id', $employer->id);
-        })->where('status', 'approved')->get();
+            $pendingInterviews = Interview::with([
+                'application.job.employer',
+                'application.user'
+            ])->whereHas('application.job', function($query) use ($employer) {
+                $query->where('employer_id', $employer->id);
+            })->where('status', 'pending')->get();
 
-        return view('jobs.interviews', compact('pendingInterviews', 'approvedInterviews'));
+            $approvedInterviews = Interview::with([
+                'application.job.employer',
+                'application.user'
+            ])->whereHas('application.job', function($query) use ($employer) {
+                $query->where('employer_id', $employer->id);
+            })->where('status', 'approved')->get();
+
+            $viewType = 'employer';
+        } else {
+            $pendingInterviews = Interview::with([
+                'application.job.employer',
+                'application.user'
+            ])->whereHas('application', function($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->where('status', 'pending')->get();
+
+            $approvedInterviews = Interview::with([
+                'application.job.employer',
+                'application.user'
+            ])->whereHas('application', function($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->where('status', 'approved')->get();
+
+            $viewType = 'applicant';
+        }
+
+        return view('jobs.interviews', compact('pendingInterviews', 'approvedInterviews', 'viewType'));
+    }
+
+    public function allInterviews($type)
+    {
+        $user = Auth::user();
+
+        if ($user->user_type === 'employer') {
+            $employer = $user->employer;
+
+            if ($type === 'pending') {
+                $interviews = Interview::with([
+                    'application.job.employer',
+                    'application.user'
+                ])->whereHas('application.job', function($query) use ($employer) {
+                    $query->where('employer_id', $employer->id);
+                })->where('status', 'pending')->get();
+            } else {
+                $interviews = Interview::with([
+                    'application.job.employer',
+                    'application.user'
+                ])->whereHas('application.job', function($query) use ($employer) {
+                    $query->where('employer_id', $employer->id);
+                })->where('status', 'approved')->get();
+            }
+
+            $viewType = 'employer';
+        } else {
+            if ($type === 'pending') {
+                $interviews = Interview::with([
+                    'application.job.employer',
+                    'application.user'
+                ])->whereHas('application', function($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })->where('status', 'pending')->get();
+            } else {
+                $interviews = Interview::with([
+                    'application.job.employer',
+                    'application.user'
+                ])->whereHas('application', function($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })->where('status', 'approved')->get();
+            }
+
+            $viewType = 'applicant';
+        }
+
+        return view('jobs.allInterviews', compact('interviews', 'viewType', 'type'));
     }
 
     public function edit(Job $job)
     {
-        // Check if user owns this job
-        if ($job->employer_id !== Auth::user()->employer->id) {
-            return redirect()->back()->with('error', 'Unauthorized access');
-        }
+        $this->authorize('update', $job);
 
         $employer = Auth::user()->employer;
         return view('jobs.edit', compact('job', 'employer'));
@@ -130,10 +224,7 @@ class JobController extends Controller
 
     public function update(Request $request, Job $job)
     {
-        // Check if user owns this job
-        if ($job->employer_id !== Auth::user()->employer->id) {
-            return redirect()->back()->with('error', 'Unauthorized access');
-        }
+        $this->authorize('update', $job);
 
         $request->validate([
             'title' => 'required|string|max:255',
@@ -142,7 +233,8 @@ class JobController extends Controller
             'work_location' => 'required|in:Work From Home,Onsite',
             'salary_min' => 'required|numeric|min:0',
             'salary_max' => 'required|numeric|min:0',
-            'quote' => 'required|string'
+            'quote' => 'required|string',
+            'featured' => 'nullable|boolean'
         ]);
 
         $job->update([
@@ -153,6 +245,7 @@ class JobController extends Controller
             'work_location' => $request->work_location,
             'salary_min' => $request->salary_min,
             'salary_max' => $request->salary_max,
+            'featured' => $request->has('featured') ? true : false,
         ]);
 
         return redirect("/jobs/{$job->employer_id}")->with('success', 'Job updated successfully!');
@@ -160,13 +253,9 @@ class JobController extends Controller
 
     public function destroy(Job $job)
     {
-        // Check if user owns this job
-        if ($job->employer_id !== Auth::user()->employer->id) {
-            return redirect()->back()->with('error', 'Unauthorized access');
-        }
+        $this->authorize('delete', $job);
 
         $job->delete();
-
         return redirect()->back()->with('success', 'Job deleted successfully!');
     }
 
@@ -192,20 +281,51 @@ class JobController extends Controller
         return redirect()->back()->with('success', 'Interview disapproved successfully');
     }
 
-    public function show()
+    public function showJob(Job $job)
     {
-        return view('jobs.showJobs');
+        return view('jobs.showJobs', compact('job'));
     }
 
-    public function apply(){
-        return view('jobs.apply');
-    }
-
-    public function interviewsApplicant()
+    public function showApply(Job $job)
     {
-        return view('jobs.interviewsApplicant');
+        return view('jobs.apply', compact('job'));
     }
 
+    public function storeApplication(Request $request, Job $job)
+    {
+        $existingApplication = Application::where('job_id', $job->id)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if ($existingApplication) {
+            return redirect()->back()->with('error', 'You have already applied to this job.');
+        }
+
+        $validated = $request->validate([
+            'resume' => 'required|file|mimes:pdf|max:2048',
+            'message' => 'nullable|string|max:500'
+        ]);
+
+        // Store the file and get the path
+        $resumePath = $request->file('resume')->store('resumes', 'public');
+
+        // Create the application with the correct resume_path
+        $application = Application::create([
+            'job_id' => $job->id,
+            'user_id' => Auth::id(),
+            'status' => 'pending',
+            'message' => $validated['message'] ?? null,
+            'resume_path' => $resumePath,
+        ]);
+
+        // Create interview record
+        Interview::create([
+            'application_id' => $application->id,
+            'status' => 'pending',
+        ]);
+
+        return redirect('/home')->with('success', 'Application submitted successfully!');
+    }
     public function profileApplicant()
     {
         $user = Auth::user();
@@ -214,4 +334,5 @@ class JobController extends Controller
 
         return view('jobs.profileApplicant', compact('user', 'applicant', 'credentials'));
     }
+
 }

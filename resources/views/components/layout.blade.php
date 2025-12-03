@@ -28,7 +28,7 @@
 
             @auth
                 @if(Auth::user()->user_type === 'employer' && Auth::user()->employer)
-                    <a href="/jobs/{{ Auth::user()->employer->id }}">Your Jobs</a>
+                    <a href="/employer/{{ Auth::user()->employer->id }}">Your Jobs</a>
                     <a href="/interviews">Interviews</a>
                     <a href="/jobs/create" class="inline-block rounded-lg border border-white/3 bg-gradient-to-b from-zinc-800 to-black text-gray-200 font-semibold text-base shadow-lg px-3 py-1.5 overflow-hidden transition hover:shadow-xl">
                     <span class="flex items-center gap-2">
@@ -39,7 +39,7 @@
                     </span>
                     </a>
                 @else
-                    <a href="/applicant/interviews">Interviews</a>
+                    <a href="/interviews">Interviews</a>
                     <a href="/applicant/profile">Profile</a>
                 @endif
             @endauth

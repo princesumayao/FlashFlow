@@ -56,12 +56,21 @@
                 </div>
             </div>
 
-        <div class="flex items-center justify-between mb-8">
-            <h2 class="text-3xl font-extrabold">Your Jobs</h2>
-        </div>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-3xl font-extrabold">Your Jobs</h2>
+                @if($jobs->count() > 1)
+                    <a href="{{ route('jobs.all', $employer->id) }}"
+                       class="inline-flex items-center gap-2 px-6 py-2.5 text-white font-semibold">
+                        View More
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </a>
+                @endif
+            </div>
 
             <div class="space-y-6">
-                @foreach($jobs as $job)
+                @foreach($jobs->take(2) as $job)
                     <x-job-card :$job />
                 @endforeach
             </div>

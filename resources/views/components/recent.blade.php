@@ -1,5 +1,5 @@
 @props(['job'])
-
+<a href="{{ route('job.show', $job) }}" class="block">
 <div class="flex items-center justify-between p-8 min-h-[140px] bg-white/5 rounded-xl border border-zinc-900 shadow-xl hover:shadow-2xl hover:border-blue-700 transition-all duration-300 group">
     <div>
         <h4 class="text-2xl font-bold text-white group-hover:text-blue-500 transition-colors duration-300">{{ $job->title }}</h4>
@@ -14,3 +14,4 @@
         <span class="text-lg text-white/80 font-semibold">₱{{ number_format($job->salary_min) }} - ₱{{ number_format($job->salary_max) }}</span>
     </div>
 </div>
+</a>

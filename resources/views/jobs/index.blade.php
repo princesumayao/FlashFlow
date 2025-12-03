@@ -3,15 +3,17 @@
         <x-hero-section />
 
         <section class="pt-10">
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-                <x-section-header title="Featured Jobs" />
+            <div class="flex items-center justify-between mb-4">
+                <x-section-header title="Featured Jobs" href="/featured" />
                 <x-job-filter :$locations />
             </div>
 
-                <div class="grid lg:grid-cols-3 gap-8 mt-6">
-                    @foreach($featuredJobs as $job)
+            <div class="grid lg:grid-cols-3 gap-8 mt-6">
+                @foreach($featuredJobs as $job)
+                    <a href="{{ route('job.show', $job) }}" class="block">
                         <x-featured :$job />
-                    @endforeach
+                    </a>
+                @endforeach
             </div>
 
         </section>
@@ -23,7 +25,7 @@
             <x-banner />
         </section>
 
-        <section class="pt-16">
+        <section class="pt-16" id="recent-jobs">
             <div class="mb-4">
                 <x-section-header title="Recent Jobs" />
             </div>
@@ -34,6 +36,17 @@
                 @endforeach
             </div>
 
+            <div class="mt-8">
+                {{ $recentJobs->links() }}
+            </div>
         </section>
     </div>
 </x-layout>
+
+@if(request()->has('page'))
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('recent-jobs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
+@endif

@@ -5,20 +5,52 @@
 
         <section class="pt-4 max-w-5xl mx-auto relative z-10">
             <div class="flex items-center justify-between mb-8">
-                <h2 class="text-3xl font-extrabold">Interview Approvals</h2>
+                <h2 class="text-3xl font-extrabold">
+                    @if($viewType === 'employer')
+                        Interview Approvals
+                    @else
+                        My Interviews
+                    @endif
+                </h2>
             </div>
 
             <div class="space-y-6">
-                <h2 class="text-2xl font-bold mb-4">Pending Applicants</h2>
-                @foreach($pendingInterviews as $interview)
-                    <x-interview-card :$interview />
-                @endforeach
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold">Pending Interviews</h2>
+                    @if($pendingInterviews->count() > 1)
+                        <a href="{{ route('interviews.all', 'pending') }}"
+                           class="inline-flex items-center gap-2 px-6 py-2.5 text-white font-semibold">
+                            View More
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </a>
+                    @endif
+                </div>
+                @forelse($pendingInterviews->take(1) as $interview)
+                    <x-interview-card :$interview :viewType="$viewType" />
+                @empty
+                    <p class="text-white/60">No pending interviews</p>
+                @endforelse
 
                 <div class="mt-10">
-                    <h2 class="text-2xl font-bold mb-4">Approved Applicants</h2>
-                    @foreach($approvedInterviews as $interview)
-                        <x-interview-card :$interview />
-                    @endforeach
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-bold">Approved Interviews</h2>
+                        @if($approvedInterviews->count() > 1)
+                            <a href="{{ route('interviews.all', 'approved') }}"
+                               class="inline-flex items-center gap-2 px-6 py-2.5 text-white font-semibold">
+                                View More
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </a>
+                        @endif
+                    </div>
+                    @forelse($approvedInterviews->take(1) as $interview)
+                        <x-interview-card :$interview :viewType="$viewType" />
+                    @empty
+                        <p class="text-white/60">No approved interviews</p>
+                    @endforelse
                 </div>
             </div>
         </section>

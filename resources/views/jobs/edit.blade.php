@@ -8,9 +8,23 @@
                 <h2 class="text-2xl font-extrabold text-white mb-1">Edit Job</h2>
                 <div class="mb-4 border-t border-white/10"></div>
 
+
                 <x-form action="/jobs/{{ $job->id }}" method="POST" class="space-y-4">
                     @csrf
                     @method('PUT')
+
+                    <div class="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <input type="checkbox"
+                               name="featured"
+                               id="featured"
+                               value="1"
+                               {{ $job->featured ? 'checked' : '' }}
+                               class="w-5 h-5 rounded bg-white/10 border-white/20 text-blue-600 focus:ring-2 focus:ring-blue-500/30 cursor-pointer">
+                        <label for="featured" class="text-white font-semibold cursor-pointer select-none">
+                            Featured Job
+                            <span class="block text-sm text-white/60 font-normal">Select To Feature your Jobs</span>
+                        </label>
+                    </div>
 
                     <div>
                         <label class="block text-white font-bold mb-2">Job Title</label>
@@ -69,7 +83,7 @@
 
                     <div class="flex gap-4">
                         <input type="submit" value="Update Job" class="flex-1 rounded-lg border bg-white text-black font-semibold text-base shadow-lg px-6 py-3 transition hover:shadow-xl cursor-pointer">
-                        <a href="/jobs/{{ $job->employer_id }}" class="flex-1 text-center rounded-lg border border-white/20 bg-transparent text-white font-semibold text-base shadow-lg px-6 py-3 transition hover:bg-white/10">Cancel</a>
+                        <a href="{{ url()->previous() }}" class="flex-1 text-center rounded-lg border border-white/20 bg-transparent text-white font-semibold text-base shadow-lg px-6 py-3 transition hover:bg-white/10">Cancel</a>
                     </div>
                 </x-form>
             </div>
