@@ -54,36 +54,30 @@ RUN mkdir -p /etc/nginx/conf.d
 
 
 RUN printf '%s\n' \
- 'http {' \
- '    include /etc/nginx/mime.types;' \
- '    default_type application/octet-stream;' \
- '    sendfile on;' \
- '    keepalive_timeout 65;' \
+ 'server {' \
+ '    listen 8080;' \
+ '    server_name _;' \
+ '    root /var/www/html/public;' \
+ '    index index.php index.html;' \
+ '    add_header X-Frame-Options "SAMEORIGIN";' \
+ '    add_header X-Content-Type-Options "nosniff";' \
  '' \
- '    server {' \
- '        listen 8080;' \
- '        server_name _;' \
- '        root /var/www/html/public;' \
- '        index index.php index.html;' \
- '        add_header X-Frame-Options "SAMEORIGIN";' \
- '        add_header X-Content-Type-Options "nosniff";' \
- '' \
- '        location / {' \
- '            try_files $uri $uri/ /index.php?$query_string;' \
- '        }' \
- '' \
- '        location ~ \.php$ {' \
- '            include fastcgi_params;' \
- '            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;' \
- '            fastcgi_pass 127.0.0.1:9000;' \
- '            fastcgi_index index.php;' \
- '            fastcgi_buffers 16 16k;' \
- '            fastcgi_buffer_size 32k;' \
- '        }' \
- '' \
- '        location ~ /\.(?!well-known).* { deny all; }' \
+ '    location / {' \
+ '        try_files $uri $uri/ /index.php?$query_string;' \
  '    }' \
+ '' \
+ '    location ~ \.php$ {' \
+ '        include fastcgi_params;' \
+ '        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;' \
+ '        fastcgi_pass 127.0.0.1:9000;' \
+ '        fastcgi_index index.php;' \
+ '        fastcgi_buffers 16 16k;' \
+ '        fastcgi_buffer_size 32k;' \
+ '    }' \
+ '' \
+ '    location ~ /\.(?!well-known).* { deny all; }' \
  '}' > /etc/nginx/conf.d/laravel.conf
+
 
 # Supervisor config
 RUN printf '%s\n' \
