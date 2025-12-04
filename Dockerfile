@@ -49,7 +49,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
  && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Nginx config
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf
+
 RUN printf '%s\n' \
  'server {' \
  '    listen 8080;' \
