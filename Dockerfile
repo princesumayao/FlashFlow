@@ -39,7 +39,7 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Install PHP packages
-RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+RUN composer install --prefer-dist --optimize-autoloader --no-interaction
 
 # Install and build frontend
 RUN npm ci --production=false && npm run build
