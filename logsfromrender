@@ -1,51 +1,50 @@
-2025-12-04T16:30:28.84584137Z
-2025-12-04T16:30:28.84584651Z #14 [backend  8/10] RUN php artisan config:clear &&     php artisan route:clear &&     php artisan view:clear
-2025-12-04T16:30:28.84585084Z #14 CACHED
-2025-12-04T16:30:28.84585432Z
-2025-12-04T16:30:28.845857871Z #15 [frontend 2/6] WORKDIR /app
-2025-12-04T16:30:28.845873222Z #15 CACHED
-2025-12-04T16:30:28.845875442Z
-2025-12-04T16:30:28.845877932Z #16 [backend  6/10] COPY --from=frontend /app/public/build ./public/build
-2025-12-04T16:30:28.845880822Z #16 CACHED
-2025-12-04T16:30:28.845882852Z
-2025-12-04T16:30:28.845885122Z #17 [backend  5/10] COPY . .
-2025-12-04T16:30:28.845887182Z #17 CACHED
-2025-12-04T16:30:28.845889073Z
-2025-12-04T16:30:28.845891483Z #18 [frontend 4/6] RUN npm install
-2025-12-04T16:30:28.845893573Z #18 CACHED
-2025-12-04T16:30:28.845895533Z
-2025-12-04T16:30:28.845897653Z #19 [frontend 6/6] RUN npm run build
-2025-12-04T16:30:28.845899743Z #19 CACHED
-2025-12-04T16:30:28.845901614Z
-2025-12-04T16:30:28.845905214Z #20 [backend  2/10] RUN apt-get update && apt-get install -y     git curl unzip libpq-dev libonig-dev libzip-dev zip     && docker-php-ext-install pdo pdo_mysql mbstring zip
-2025-12-04T16:30:28.845907454Z #20 CACHED
-2025-12-04T16:30:28.845909364Z
-2025-12-04T16:30:28.845911474Z #21 [backend  7/10] RUN composer install --no-dev --optimize-autoloader
-2025-12-04T16:30:28.845913664Z #21 CACHED
-2025-12-04T16:30:28.845915615Z
-2025-12-04T16:30:28.845930945Z #22 [frontend 3/6] COPY package*.json ./
-2025-12-04T16:30:28.845933746Z #22 CACHED
-2025-12-04T16:30:28.845936536Z
-2025-12-04T16:30:28.845939766Z #23 [backend  9/10] COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-2025-12-04T16:30:28.845943786Z #23 ERROR: failed to calculate checksum of ref f4tsbthenlyd2h2w608fjpzwx::00esofw48g7r0kegocom0mtkt: "/supervisord.conf": not found
-2025-12-04T16:30:28.845946277Z
-2025-12-04T16:30:28.845948927Z #24 [frontend 1/6] FROM docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783
-2025-12-04T16:30:28.845951447Z #24 resolve docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783 1.2s done
-2025-12-04T16:30:28.845954047Z #24 DONE 1.2s
-2025-12-04T16:30:28.845956227Z
-2025-12-04T16:30:28.845958987Z #25 FROM docker.io/library/composer:2@sha256:1997db9e43fde2a5a20f32fcfd50f26f698d951b3787334ebd6493d0562de97f
-2025-12-04T16:30:28.845961567Z #25 resolve docker.io/library/composer:2@sha256:1997db9e43fde2a5a20f32fcfd50f26f698d951b3787334ebd6493d0562de97f 1.0s done
-2025-12-04T16:30:28.845964148Z #25 DONE 1.2s
-2025-12-04T16:30:28.852424351Z ------
-2025-12-04T16:30:28.852441282Z  > [backend  9/10] COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf:
-2025-12-04T16:30:28.852444582Z ------
-2025-12-04T16:30:28.853317569Z Dockerfile:36
-2025-12-04T16:30:28.85332894Z --------------------
-2025-12-04T16:30:28.85333277Z   34 |         php artisan view:clear
-2025-12-04T16:30:28.85333543Z   35 |
-2025-12-04T16:30:28.853340461Z   36 | >>> COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-2025-12-04T16:30:28.853343521Z   37 |     COPY nginx.conf /etc/nginx/nginx.conf
-2025-12-04T16:30:28.853346221Z   38 |
-2025-12-04T16:30:28.853405835Z --------------------
-2025-12-04T16:30:28.854791686Z error: failed to solve: failed to compute cache key: failed to calculate checksum of ref f4tsbthenlyd2h2w608fjpzwx::00esofw48g7r0kegocom0mtkt: "/supervisord.conf": not found
-2025-12-04T16:30:28.880477879Z error: exit status 1
+2025-12-04T17:23:48.158534433Z #23 6.140 53 packages you are using are looking for funding.
+2025-12-04T17:23:48.158536603Z #23 6.140 Use the `composer fund` command to find out more!
+2025-12-04T17:23:48.184821999Z #23 DONE 6.3s
+2025-12-04T17:23:48.337419672Z
+2025-12-04T17:23:48.337438853Z #24 [backend  8/10] RUN php artisan config:clear &&     php artisan route:clear &&     php artisan view:clear
+2025-12-04T17:23:48.441779158Z #24 0.255
+2025-12-04T17:23:48.441799189Z #24 0.255    INFO  Configuration cache cleared successfully.
+2025-12-04T17:23:48.441802129Z #24 0.255
+2025-12-04T17:23:48.566855124Z #24 0.380
+2025-12-04T17:23:48.566877255Z #24 0.380    INFO  Route cache cleared successfully.
+2025-12-04T17:23:48.566880105Z #24 0.380
+2025-12-04T17:23:48.694193092Z #24 0.507
+2025-12-04T17:23:48.694214003Z #24 0.507    INFO  Compiled views cleared successfully.
+2025-12-04T17:23:48.694218023Z #24 0.507
+2025-12-04T17:23:48.816384544Z #24 DONE 0.5s
+2025-12-04T17:23:48.816402395Z
+2025-12-04T17:23:48.816406785Z #25 [backend  9/10] COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+2025-12-04T17:23:48.816409836Z #25 DONE 0.0s
+2025-12-04T17:23:48.816412825Z
+2025-12-04T17:23:48.816416206Z #26 [backend 10/10] COPY nginx.conf /etc/nginx/nginx.conf
+2025-12-04T17:23:48.816419086Z #26 DONE 0.0s
+2025-12-04T17:23:48.971488452Z
+2025-12-04T17:23:48.971507513Z #27 exporting to docker image format
+2025-12-04T17:23:48.971512413Z #27 exporting layers
+2025-12-04T17:23:52.254714101Z #27 exporting layers 3.4s done
+2025-12-04T17:23:52.419275349Z #27 exporting manifest sha256:64e25fb7c6d533cf8d742a5073dc52f19952999a006c45a0ae4f4f70d12cfae0 done
+2025-12-04T17:23:52.41929788Z #27 exporting config sha256:a77d82c9cd096051d1d16a17cc10cccad6842ecc615547469b6f22de9207dbd7 done
+2025-12-04T17:23:53.688402318Z #27 DONE 4.9s
+2025-12-04T17:23:53.688431799Z
+2025-12-04T17:23:53.688441019Z #28 exporting cache to client directory
+2025-12-04T17:23:53.838951859Z #28 preparing build cache for export
+2025-12-04T17:24:09.887806467Z #28 writing cache image manifest sha256:55a06d4f708f191598c974815a9ee09960d40b3e01fd7bd3912fd0f3470463ea done
+2025-12-04T17:24:09.887827159Z #28 DONE 16.2s
+2025-12-04T17:24:15.278285729Z Pushing image to registry...
+2025-12-04T17:24:19.240027511Z Upload succeeded
+2025-12-04T17:24:23.506846323Z ==> Deploying...
+2025-12-04T17:24:36.30913Z [04-Dec-2025 17:24:36] NOTICE: fpm is running, pid 1
+2025-12-04T17:24:36.310562902Z [04-Dec-2025 17:24:36] NOTICE: ready to handle connections
+2025-12-04T17:25:30.041413344Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T17:26:34.440840378Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T17:27:38.81310899Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T17:28:42.958254956Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T17:29:46.798072315Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T17:29:47.305058287Z ==> Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
+2025-12-04T17:39:24.545038363Z ==> Timed out: Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
+2025-12-04T17:39:24.71670035Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-12-04T17:39:34.423887338Z [04-Dec-2025 17:39:34] NOTICE: Finishing ...
+2025-12-04T17:41:06.813662933Z [04-Dec-2025 17:41:06] NOTICE: fpm is running, pid 1
+2025-12-04T17:41:06.815249498Z [04-Dec-2025 17:41:06] NOTICE: ready to handle connections
+2025-12-04T17:41:06.989075662Z [04-Dec-2025 17:41:06] NOTICE: Finishing ...
