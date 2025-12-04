@@ -33,11 +33,11 @@ RUN php artisan config:clear && \
     php artisan route:clear && \
     php artisan view:clear
 
+RUN apt-get update && apt-get install -y nginx supervisor
+
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Start services
-CMD sed -i "s/\${PORT}/$PORT/g" /etc/nginx/nginx.conf && \
-    supervisord -c /etc/supervisor/conf.d/supervisord.conf
+CMD /bin/bash -c "sed -i \"s/\${PORT}/$PORT/g\" /etc/nginx/nginx.conf && supervisord -c /etc/supervisor/conf.d/supervisord.conf"
 
-CMD ["php-fpm"]

@@ -1,50 +1,50 @@
-2025-12-04T17:23:48.158534433Z #23 6.140 53 packages you are using are looking for funding.
-2025-12-04T17:23:48.158536603Z #23 6.140 Use the `composer fund` command to find out more!
-2025-12-04T17:23:48.184821999Z #23 DONE 6.3s
-2025-12-04T17:23:48.337419672Z
-2025-12-04T17:23:48.337438853Z #24 [backend  8/10] RUN php artisan config:clear &&     php artisan route:clear &&     php artisan view:clear
-2025-12-04T17:23:48.441779158Z #24 0.255
-2025-12-04T17:23:48.441799189Z #24 0.255    INFO  Configuration cache cleared successfully.
-2025-12-04T17:23:48.441802129Z #24 0.255
-2025-12-04T17:23:48.566855124Z #24 0.380
-2025-12-04T17:23:48.566877255Z #24 0.380    INFO  Route cache cleared successfully.
-2025-12-04T17:23:48.566880105Z #24 0.380
-2025-12-04T17:23:48.694193092Z #24 0.507
-2025-12-04T17:23:48.694214003Z #24 0.507    INFO  Compiled views cleared successfully.
-2025-12-04T17:23:48.694218023Z #24 0.507
-2025-12-04T17:23:48.816384544Z #24 DONE 0.5s
-2025-12-04T17:23:48.816402395Z
-2025-12-04T17:23:48.816406785Z #25 [backend  9/10] COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-2025-12-04T17:23:48.816409836Z #25 DONE 0.0s
-2025-12-04T17:23:48.816412825Z
-2025-12-04T17:23:48.816416206Z #26 [backend 10/10] COPY nginx.conf /etc/nginx/nginx.conf
-2025-12-04T17:23:48.816419086Z #26 DONE 0.0s
-2025-12-04T17:23:48.971488452Z
-2025-12-04T17:23:48.971507513Z #27 exporting to docker image format
-2025-12-04T17:23:48.971512413Z #27 exporting layers
-2025-12-04T17:23:52.254714101Z #27 exporting layers 3.4s done
-2025-12-04T17:23:52.419275349Z #27 exporting manifest sha256:64e25fb7c6d533cf8d742a5073dc52f19952999a006c45a0ae4f4f70d12cfae0 done
-2025-12-04T17:23:52.41929788Z #27 exporting config sha256:a77d82c9cd096051d1d16a17cc10cccad6842ecc615547469b6f22de9207dbd7 done
-2025-12-04T17:23:53.688402318Z #27 DONE 4.9s
-2025-12-04T17:23:53.688431799Z
-2025-12-04T17:23:53.688441019Z #28 exporting cache to client directory
-2025-12-04T17:23:53.838951859Z #28 preparing build cache for export
-2025-12-04T17:24:09.887806467Z #28 writing cache image manifest sha256:55a06d4f708f191598c974815a9ee09960d40b3e01fd7bd3912fd0f3470463ea done
-2025-12-04T17:24:09.887827159Z #28 DONE 16.2s
-2025-12-04T17:24:15.278285729Z Pushing image to registry...
-2025-12-04T17:24:19.240027511Z Upload succeeded
-2025-12-04T17:24:23.506846323Z ==> Deploying...
-2025-12-04T17:24:36.30913Z [04-Dec-2025 17:24:36] NOTICE: fpm is running, pid 1
-2025-12-04T17:24:36.310562902Z [04-Dec-2025 17:24:36] NOTICE: ready to handle connections
-2025-12-04T17:25:30.041413344Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
-2025-12-04T17:26:34.440840378Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
-2025-12-04T17:27:38.81310899Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
-2025-12-04T17:28:42.958254956Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
-2025-12-04T17:29:46.798072315Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
-2025-12-04T17:29:47.305058287Z ==> Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
-2025-12-04T17:39:24.545038363Z ==> Timed out: Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
-2025-12-04T17:39:24.71670035Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
-2025-12-04T17:39:34.423887338Z [04-Dec-2025 17:39:34] NOTICE: Finishing ...
-2025-12-04T17:41:06.813662933Z [04-Dec-2025 17:41:06] NOTICE: fpm is running, pid 1
-2025-12-04T17:41:06.815249498Z [04-Dec-2025 17:41:06] NOTICE: ready to handle connections
-2025-12-04T17:41:06.989075662Z [04-Dec-2025 17:41:06] NOTICE: Finishing ...
+2025-12-04T18:01:44.616956655Z #23 12.28   nesbot/carbon ......................................................... DONE
+2025-12-04T18:01:44.616961545Z #23 12.29   nunomaduro/termwind ................................................... DONE
+2025-12-04T18:01:44.616965375Z #23 12.30
+2025-12-04T18:01:44.616970345Z #23 12.31 53 packages you are using are looking for funding.
+2025-12-04T18:01:44.616973995Z #23 12.31 Use the `composer fund` command to find out more!
+2025-12-04T18:01:56.023363013Z #23 DONE 23.9s
+2025-12-04T18:01:56.176524755Z
+2025-12-04T18:01:56.176544065Z #24 [backend  8/10] RUN php artisan config:clear &&     php artisan route:clear &&     php artisan view:clear
+2025-12-04T18:01:56.336581045Z #24 0.311
+2025-12-04T18:01:56.336598586Z #24 0.311    INFO  Configuration cache cleared successfully.
+2025-12-04T18:01:56.336604246Z #24 0.311
+2025-12-04T18:01:56.486052549Z #24 0.460
+2025-12-04T18:01:56.486073709Z #24 0.460    INFO  Route cache cleared successfully.
+2025-12-04T18:01:56.486077289Z #24 0.460
+2025-12-04T18:01:56.630287885Z #24 0.604
+2025-12-04T18:01:56.630309755Z #24 0.604    INFO  Compiled views cleared successfully.
+2025-12-04T18:01:56.630315245Z #24 0.604
+2025-12-04T18:01:56.737287397Z #24 DONE 0.7s
+2025-12-04T18:01:56.737309427Z
+2025-12-04T18:01:56.737314378Z #25 [backend  9/10] COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+2025-12-04T18:01:56.737318158Z #25 DONE 0.1s
+2025-12-04T18:01:56.955452949Z
+2025-12-04T18:01:56.95547933Z #26 [backend 10/10] COPY nginx.conf /etc/nginx/nginx.conf
+2025-12-04T18:01:56.95548444Z #26 DONE 0.1s
+2025-12-04T18:01:56.95548817Z
+2025-12-04T18:01:56.95549319Z #27 exporting to docker image format
+2025-12-04T18:01:56.95549695Z #27 exporting layers
+2025-12-04T18:02:00.648830804Z #27 exporting layers 3.8s done
+2025-12-04T18:02:00.857690473Z #27 exporting manifest sha256:5487947fc80a51719b650c664a4ba804e8b82aa1019c1d571a80a1f5496f70d4 0.0s done
+2025-12-04T18:02:00.857711673Z #27 exporting config sha256:afa06ba226a88ed2f9cfa1901e451f32be1321e9177252dd82c45f03d36092bf 0.0s done
+2025-12-04T18:02:02.196272349Z #27 DONE 5.4s
+2025-12-04T18:02:02.346623938Z
+2025-12-04T18:02:02.346649529Z #28 exporting cache to client directory
+2025-12-04T18:02:02.346654389Z #28 preparing build cache for export
+2025-12-04T18:02:12.89020204Z #28 writing cache image manifest sha256:59a2006ad91d349273bbc8a659de6e51aaaa45c2e09ed9ecb6d03c53c55db120 0.0s done
+2025-12-04T18:02:12.89022417Z #28 DONE 10.6s
+2025-12-04T18:02:14.043232131Z Pushing image to registry...
+2025-12-04T18:02:17.791583749Z Upload succeeded
+2025-12-04T18:02:22.622814318Z ==> Deploying...
+2025-12-04T18:02:52.012444149Z [04-Dec-2025 18:02:52] NOTICE: fpm is running, pid 1
+2025-12-04T18:02:52.100351764Z [04-Dec-2025 18:02:52] NOTICE: ready to handle connections
+2025-12-04T18:03:47.884173108Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T18:04:53.165294681Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T18:05:56.445098647Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T18:06:57.190188568Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T18:07:59.170354505Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T18:07:59.84812349Z ==> Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
+2025-12-04T18:17:23.428794932Z ==> Timed out: Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
+2025-12-04T18:17:23.600726299Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-12-04T18:17:39.603373374Z [04-Dec-2025 18:17:39] NOTICE: Finishing ...
