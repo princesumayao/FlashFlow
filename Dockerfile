@@ -26,9 +26,9 @@ RUN apk add --no-cache \
     openssl \
     ca-certificates
 
-# Install PHP extensions
+# Install PHP extensions (UPDATED - added pdo_pgsql)
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
- && docker-php-ext-install -j$(nproc) pdo pdo_mysql mbstring exif pcntl bcmath zip gd intl
+ && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath zip gd intl
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -41,14 +41,12 @@ COPY . /var/www/html
 # Install PHP packages
 RUN composer install --prefer-dist --optimize-autoloader --no-interaction
 
-# Create SQLite database directory and file, then run migrations
-RUN mkdir -p /var/www/html/database \
- && touch /var/www/html/database/database.sqlite \
- && chmod 664 /var/www/html/database/database.sqlite \
- && php artisan migrate --force \
+# Run migrations (UPDATED - removed SQLite setup)
+RUN php artisan migrate --force \
  && php artisan config:cache \
  && php artisan route:cache \
  && php artisan view:cache
+
 
 # Install and build frontend
 RUN npm ci --production=false && npm run build
