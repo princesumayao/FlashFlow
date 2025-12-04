@@ -1,54 +1,50 @@
-2025-12-04T14:04:35.602247643Z #20 exporting to docker image format
-2025-12-04T14:04:35.602256003Z #20 exporting layers done
-2025-12-04T14:04:35.602263503Z #20 exporting manifest sha256:e0fdea45890c04ac9fcd313295bbfb7b346e85e39fda5be6e3f5e6b96af9da59 0.0s done
-2025-12-04T14:04:35.602269214Z #20 exporting config sha256:76b9223bf7a58cc46d5a4d2895b0b976b1adc24165675c8bea24e28eca5b8563 0.0s done
-2025-12-04T14:04:37.222867255Z #20 DONE 1.9s
-2025-12-04T14:04:37.222887435Z
-2025-12-04T14:04:37.222893386Z #21 exporting cache to client directory
-2025-12-04T14:04:37.222897826Z #21 preparing build cache for export
-2025-12-04T14:04:37.784866736Z #21 writing cache image manifest sha256:ca4b58e664dd89ef2c564712f4bae0206cdb891343f2c64061566b73868e7b3f done
-2025-12-04T14:04:37.784902607Z #21 DONE 0.5s
-2025-12-04T14:04:39.569053554Z Pushing image to registry...
-2025-12-04T14:04:40.749553636Z Upload succeeded
-2025-12-04T14:04:49.538227076Z ==> Deploying...
-2025-12-04T14:05:27.273914416Z 2025-12-04 14:05:27,273 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
-2025-12-04T14:05:27.316900408Z 2025-12-04 14:05:27,316 INFO supervisord started with pid 1
-2025-12-04T14:05:28.319274804Z 2025-12-04 14:05:28,318 INFO spawned: 'nginx' with pid 7
-2025-12-04T14:05:28.322686306Z 2025-12-04 14:05:28,322 INFO spawned: 'php-fpm' with pid 8
-2025-12-04T14:05:28.829250418Z [04-Dec-2025 14:05:28] NOTICE: fpm is running, pid 8
-2025-12-04T14:05:28.829634588Z 2025-12-04 14:05:28,829 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state STARTING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:28.915657647Z [04-Dec-2025 14:05:28] NOTICE: ready to handle connections
-2025-12-04T14:05:28.915862323Z 2025-12-04 14:05:28,915 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state STARTING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:29.916726943Z 2025-12-04 14:05:29,916 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04T14:05:29.916757616Z 2025-12-04 14:05:29,916 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04T14:05:31.9785303Z ==> Your service is live 🎉
-2025-12-04T14:05:32.198322305Z ==>
-2025-12-04T14:05:32.41404032Z ==> ///////////////////////////////////////////////////////////
-2025-12-04T14:05:32.636763264Z ==>
-2025-12-04T14:05:33.360322434Z ==> Available at your primary URL https://flashflow-3.onrender.com
-2025-12-04T14:05:34.053561886Z ==>
-2025-12-04T14:05:34.85933837Z ==> ///////////////////////////////////////////////////////////
-2025-12-04T14:05:39.826407602Z 127.0.0.1 -  04/Dec/2025:14:05:38 +0000 "GET /index.php" 500
-2025-12-04T14:05:39.826499399Z 2025-12-04 14:05:39,826 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:41.725264051Z 127.0.0.1 -  04/Dec/2025:14:05:41 +0000 "HEAD /index.php" 500
-2025-12-04T14:05:41.72551371Z 2025-12-04 14:05:41,725 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:48.003962099Z 2025-12-04 14:05:48,003 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:48.003999112Z 127.0.0.1 -  04/Dec/2025:14:05:47 +0000 "GET /index.php" 500
-2025-12-04T14:05:49.531555684Z 127.0.0.1 -  04/Dec/2025:14:05:49 +0000 "GET /index.php" 500
-2025-12-04T14:05:49.531610378Z 2025-12-04 14:05:49,531 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:49.695515052Z 127.0.0.1 -  04/Dec/2025:14:05:49 +0000 "GET /index.php" 500
-2025-12-04T14:05:49.695661653Z 2025-12-04 14:05:49,695 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:49.902434761Z 127.0.0.1 -  04/Dec/2025:14:05:49 +0000 "GET /index.php" 500
-2025-12-04T14:05:49.902568871Z 2025-12-04 14:05:49,902 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:50.064676376Z 127.0.0.1 -  04/Dec/2025:14:05:50 +0000 "GET /index.php" 500
-2025-12-04T14:05:50.064809687Z 2025-12-04 14:05:50,064 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:50.339739762Z 127.0.0.1 -  04/Dec/2025:14:05:50 +0000 "GET /index.php" 500
-2025-12-04T14:05:50.339884062Z 2025-12-04 14:05:50,339 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:51.153473476Z 127.0.0.1 -  04/Dec/2025:14:05:51 +0000 "GET /index.php" 500
-2025-12-04T14:05:51.153565683Z 2025-12-04 14:05:51,153 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:51.804511719Z 127.0.0.1 -  04/Dec/2025:14:05:51 +0000 "GET /index.php" 500
-2025-12-04T14:05:51.804626438Z 2025-12-04 14:05:51,804 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:55.056848007Z 127.0.0.1 -  04/Dec/2025:14:05:55 +0000 "GET /index.php" 500
-2025-12-04T14:05:55.056971127Z 2025-12-04 14:05:55,056 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
-2025-12-04T14:05:58.057148341Z 127.0.0.1 -  04/Dec/2025:14:05:58 +0000 "GET /index.php" 500
-2025-12-04T14:05:58.05727591Z 2025-12-04 14:05:58,057 CRIT uncaptured python exception, closing channel <POutputDispatcher at 140566370747648 for <Subprocess at 140566373247616 with name php-fpm in state RUNNING> (stderr)> (<class 'OSError'>:[Errno 29] Invalid seek [/usr/lib/python3.12/site-packages/supervisor/supervisord.py|runforever|218] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|handle_read_event|276] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|record_output|210] [/usr/lib/python3.12/site-packages/supervisor/dispatchers.py|_log|179] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|info|327] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|log|345] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|emit|227] [/usr/lib/python3.12/site-packages/supervisor/loggers.py|doRollover|264])
+2025-12-04T14:30:37.214419206Z #9 14.91 checking whether we are cross compiling... no
+2025-12-04T14:30:37.214422266Z #9 14.95 checking for suffix of object files... o
+2025-12-04T14:30:37.326724632Z #9 14.98 checking whether the compiler supports GNU C... yes
+2025-12-04T14:30:37.326746182Z #9 15.00 checking whether cc accepts -g... yes
+2025-12-04T14:30:37.326750233Z #9 15.03 checking for cc option to enable C11 features... none needed
+2025-12-04T14:30:37.448022736Z #9 15.09 checking how to run the C preprocessor... cc -E
+2025-12-04T14:30:37.448038697Z #9 15.15 checking for egrep -e... (cached) /bin/grep -E
+2025-12-04T14:30:37.448041577Z #9 15.15 checking for icc... no
+2025-12-04T14:30:37.448044217Z #9 15.16 checking for suncc... no
+2025-12-04T14:30:37.448045887Z #9 15.17 checking for system library directory... lib
+2025-12-04T14:30:37.448047657Z #9 15.17 checking if compiler supports -Wl,-rpath,... yes
+2025-12-04T14:30:37.685726431Z #9 15.21 checking build system type... x86_64-pc-linux-musl
+2025-12-04T14:30:37.685743771Z #9 15.22 checking host system type... x86_64-pc-linux-musl
+2025-12-04T14:30:37.685748842Z #9 15.22 checking target system type... x86_64-pc-linux-musl
+2025-12-04T14:30:37.685753862Z #9 15.26 checking for PHP prefix... /usr/local
+2025-12-04T14:30:37.685758712Z #9 15.26 checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+2025-12-04T14:30:37.685763562Z #9 15.26 checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+2025-12-04T14:30:37.685778092Z #9 15.26 checking for PHP installed headers prefix... /usr/local/include/php
+2025-12-04T14:30:37.685780662Z #9 15.26 checking if debug is enabled... no
+2025-12-04T14:30:37.685783002Z #9 15.28 checking if zts is enabled... no
+2025-12-04T14:30:37.685786052Z #9 15.30 checking for gawk... no
+2025-12-04T14:30:37.685788292Z #9 15.30 checking for nawk... no
+2025-12-04T14:30:37.685790503Z #9 15.30 checking for awk... awk
+2025-12-04T14:30:37.685792723Z #9 15.30 checking if awk is broken... no
+2025-12-04T14:30:37.685794903Z #9 15.30 checking for PostgreSQL support for PDO... yes, shared
+2025-12-04T14:30:37.685797063Z #9 15.30 checking for pg_config... not found
+2025-12-04T14:30:37.685799513Z #9 15.30 configure: error: Cannot find libpq-fe.h. Please specify correct PostgreSQL installation path
+2025-12-04T14:30:37.709526936Z #9 ERROR: process "/bin/sh -c docker-php-ext-configure gd --with-freetype --with-jpeg  && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath zip gd intl" did not complete successfully: exit code: 1
+2025-12-04T14:30:37.758510682Z ------
+2025-12-04T14:30:37.758533082Z  > [ 3/13] RUN docker-php-ext-configure gd --with-freetype --with-jpeg  && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath zip gd intl:
+2025-12-04T14:30:37.758539152Z 15.26 checking for PHP installed headers prefix... /usr/local/include/php
+2025-12-04T14:30:37.758544102Z 15.26 checking if debug is enabled... no
+2025-12-04T14:30:37.758547913Z 15.28 checking if zts is enabled... no
+2025-12-04T14:30:37.758552713Z 15.30 checking for gawk... no
+2025-12-04T14:30:37.758556663Z 15.30 checking for nawk... no
+2025-12-04T14:30:37.758560483Z 15.30 checking for awk... awk
+2025-12-04T14:30:37.758564203Z 15.30 checking if awk is broken... no
+2025-12-04T14:30:37.758568763Z 15.30 checking for PostgreSQL support for PDO... yes, shared
+2025-12-04T14:30:37.758572513Z 15.30 checking for pg_config... not found
+2025-12-04T14:30:37.758577363Z 15.30 configure: error: Cannot find libpq-fe.h. Please specify correct PostgreSQL installation path
+2025-12-04T14:30:37.758581383Z ------
+2025-12-04T14:30:37.759668131Z Dockerfile:30
+2025-12-04T14:30:37.759680571Z --------------------
+2025-12-04T14:30:37.759684942Z   29 |     # Install PHP extensions (UPDATED - added pdo_pgsql)
+2025-12-04T14:30:37.759689311Z   30 | >>> RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+2025-12-04T14:30:37.759693362Z   31 | >>>  && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath zip gd intl
+2025-12-04T14:30:37.759697152Z   32 |
+2025-12-04T14:30:37.759700972Z --------------------
+2025-12-04T14:30:37.759705572Z error: failed to solve: process "/bin/sh -c docker-php-ext-configure gd --with-freetype --with-jpeg  && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath zip gd intl" did not complete successfully: exit code: 1
+2025-12-04T14:30:37.778721646Z error: exit status 1

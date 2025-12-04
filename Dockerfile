@@ -24,7 +24,8 @@ RUN apk add --no-cache \
     build-base \
     unzip \
     openssl \
-    ca-certificates
+    ca-certificates \
+    postgresql-dev
 
 # Install PHP extensions (UPDATED - added pdo_pgsql)
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
