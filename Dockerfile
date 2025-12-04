@@ -1,12 +1,12 @@
-# dockerfile
 FROM php:8.1-fpm-alpine
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_MEMORY_LIMIT=-1 \
     NODE_ENV=production \
     APP_ENV=production \
     PORT=8080
 
-# Install system dependencies, php extensions build deps, nginx and supervisor
+# Install everything composer and npm need
 RUN apk add --no-cache \
     bash \
     git \
@@ -21,10 +21,12 @@ RUN apk add --no-cache \
     libpng-dev \
     libjpeg-turbo-dev \
     freetype-dev \
-    jpeg-dev \
-    build-base
+    build-base \
+    unzip \
+    openssl \
+    ca-certificates
 
-# Configure and install PHP extensions
+# Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j$(nproc) pdo pdo_mysql mbstring exif pcntl bcmath zip gd intl
 
@@ -33,27 +35,25 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /var/www/html
 
-# Copy composer files first to leverage caching
+# Copy composer files
 COPY composer.json composer.lock /var/www/html/
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+# Install PHP packages
+RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
-# Copy package files and build frontend assets
+# Copy frontend files and build
 COPY package.json package-lock.json /var/www/html/
-RUN npm ci --production \
- && npm run build
+RUN npm ci --production=false
+RUN npm run build
 
-# Copy application code
+# Copy rest of app
 COPY . /var/www/html
 
-# Run composer again to pick up any post-copy autoload changes
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
-
-# Set permissions for storage and bootstrap cache
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
  && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Nginx config: serve Laravel public folder and forward php to php-fpm on 127.0.0.1:9000
+# Nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 RUN printf '%s\n' \
  'server {' \
@@ -80,7 +80,7 @@ RUN printf '%s\n' \
  '    location ~ /\.(?!well-known).* { deny all; }' \
  '}' > /etc/nginx/conf.d/laravel.conf
 
-# Supervisor config to run nginx and php-fpm
+# Supervisor config
 RUN printf '%s\n' \
  '[supervisord]' \
  'nodaemon=true' \
@@ -96,11 +96,6 @@ RUN printf '%s\n' \
  'stderr_logfile=/dev/stderr' \
  > /etc/supervisord.conf
 
-# Expose port for Render (match this in Render service settings)
 EXPOSE 8080
 
-# Healthcheck (optional)
-HEALTHCHECK --interval=30s --timeout=3s CMD wget -qO- http://localhost:8080/ || exit 1
-
-# Final command
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
