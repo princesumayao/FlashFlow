@@ -75,7 +75,6 @@ class RegisteredController extends Controller
             'user_type' => 'applicant',
         ]);
 
-        // Create applicant record
         Applicant::create([
             'user_id' => $user->id,
         ]);
@@ -96,7 +95,6 @@ class RegisteredController extends Controller
     {
         $user = Auth::user();
 
-        // Validate personal information
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -108,16 +106,13 @@ class RegisteredController extends Controller
             'github_url' => 'nullable|url',
         ]);
 
-        // Handle avatar upload
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
             $validated['avatar'] = $path;
         }
 
-        // Update user
         $user->update($validated);
 
-        // Handle employer-specific fields
         if ($user->user_type === 'employer' && $user->employer) {
             $user->employer->update($request->only([
                 'company_name',
@@ -128,7 +123,6 @@ class RegisteredController extends Controller
             ]));
         }
 
-        // Handle applicant-specific fields
         if ($user->user_type === 'applicant' && $user->applicant) {
             $user->applicant->update($request->only([
                 'instagram_url',
@@ -137,7 +131,6 @@ class RegisteredController extends Controller
             ]));
         }
 
-        // Handle applicant credentials
         if ($user->user_type === 'applicant') {
             $credentialTypes = ['education', 'certification', 'experience'];
 
@@ -163,7 +156,6 @@ class RegisteredController extends Controller
             }
         }
 
-        // Redirect based on user type
         if ($user->user_type === 'employer') {
             return redirect('/jobs/' . $user->employer->id)->with('success', 'Profile updated successfully!');
         } else {

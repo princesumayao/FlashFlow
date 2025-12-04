@@ -1,22 +1,22 @@
 <x-layout>
     <div class="relative">
-        <img src="{{ Vite::asset('resources/images/left-design.svg') }}" alt="" class="fixed left-10 top-1/2 -translate-y-2/3 w-80 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
-        <img src="{{ Vite::asset('resources/images/right-design.svg') }}" alt="" class="fixed right-10 top-2/3 -translate-y-1/2 w-80 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
+        <img src="{{ Vite::asset('resources/images/left-design.svg') }}" alt="" class="hidden lg:block fixed left-10 top-1/2 -translate-y-2/3 w-80 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
+        <img src="{{ Vite::asset('resources/images/right-design.svg') }}" alt="" class="hidden lg:block fixed right-10 top-2/3 -translate-y-1/2 w-80 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
 
-        <section class="pt-4 max-w-5xl mx-auto relative z-10">
-            <div class="flex justify-center">
-                <div class="flex items-start justify-between gap-6 p-6 mb-8 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl shadow-xl w-full max-w-xl">
-                    <div class="flex items-center gap-4">
+        <section class="pt-4 max-w-5xl mx-auto relative z-10 px-4 md:px-0 -mt-10">
+            <div class="flex justify-center mb-8">
+                <div class="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-6 p-4 md:p-6 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black rounded-2xl shadow-xl w-full max-w-xl">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-4 w-full md:w-auto">
                         <img src="{{ $employer->user->avatar ? asset('storage/' . $employer->user->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($employer->user->first_name . ' ' . $employer->user->last_name) . '&size=128' }}"
                              alt="Profile Picture"
-                             class="w-24 h-24 rounded-full object-cover border-4 border-white/20" />
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">{{ $employer->user->first_name }} {{ $employer->user->last_name }}</h2>
-                            <div class="text-blue-200 text-lg">{{ $employer->company_name }}</div>
+                             class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white/20" />
+                        <div class="text-center md:text-left w-full md:w-auto">
+                            <h2 class="text-xl md:text-2xl font-bold text-white">{{ $employer->user->first_name }} {{ $employer->user->last_name }}</h2>
+                            <div class="text-blue-200 text-base md:text-lg">{{ $employer->company_name }}</div>
                             <div class="text-white/60 text-sm">{{ $employer->location }}</div>
                             <div class="text-white/60 text-sm mb-2">{{ $employer->user->email }}</div>
 
-                            <div class="flex gap-2 mt-2">
+                            <div class="flex gap-2 mt-2 justify-center md:justify-start flex-wrap">
                                 @if($employer->instagram_url)
                                     <a href="{{ $employer->instagram_url }}" target="_blank" class="rounded-full bg-white/10 hover:bg-pink-500/80 text-white p-2 transition">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,14 +42,12 @@
                                         </svg>
                                     </a>
                                 @endif
-
                             </div>
                         </div>
                     </div>
-                    <a href="/profile/edit"
-                       class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg font-semibold border shadow hover:bg-gray-100 hover:text-black hover:border-gray-300 transition self-start">
+                    <a href="/profile/edit" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white text-black rounded-lg font-semibold border shadow hover:bg-gray-100 hover:text-black hover:border-gray-300 transition w-full md:w-auto md:self-start text-sm md:text-base">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
                         Edit Profile
                     </a>
@@ -57,12 +55,11 @@
             </div>
 
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-3xl font-extrabold">Your Jobs</h2>
+                <h2 class="text-2xl md:text-3xl font-extrabold">Your Jobs</h2>
                 @if($jobs->count() > 1)
-                    <a href="{{ route('jobs.all', $employer->id) }}"
-                       class="inline-flex items-center gap-2 px-6 py-2.5 text-white font-semibold">
+                    <a href="{{ route('jobs.all', $employer->id) }}" class="inline-flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 text-white font-semibold text-xs md:text-base hover:text-blue-400 transition-colors duration-300 whitespace-nowrap">
                         View More
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 md:size-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
                     </a>

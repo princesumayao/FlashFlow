@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class JobController extends Controller
 {
-
     use AuthorizesRequests;
-    //
     public function index()
     {
         $featuredJobs = Job::where('featured', true)->where('status', 'active')->latest()->take(6)->get();
@@ -27,30 +25,22 @@ class JobController extends Controller
             ->sort()
             ->values();
 
-        return view('jobs.index', [
-            'featuredJobs' => $featuredJobs,
-            'recentJobs' => $recentJobs,
-            'locations' => $locations
-        ]);
+        return view('jobs.index', ['featuredJobs' => $featuredJobs, 'recentJobs' => $recentJobs, 'locations' => $locations]);
     }
     public function create()
     {
-        // Check if user is authenticated
         if (!Auth::check()) {
             return redirect('/')->with('error', 'Please login first');
         }
 
-        // Check if user is an employer
         if (Auth::user()->user_type !== 'employer') {
             return redirect('/home')->with('error', 'Access denied');
         }
 
-        // Check if user has employer profile
         if (!Auth::user()->employer) {
             return redirect('/home')->with('error', 'Please complete your employer profile first');
         }
 
-        // Pass the employer data to the view
         $employer = Auth::user()->employer;
 
         return view('jobs.create', compact('employer'));
@@ -92,10 +82,7 @@ class JobController extends Controller
     }
     public function featured()
     {
-        $jobs = Job::where('featured', true)
-            ->where('status', 'active')
-            ->latest()
-            ->get();
+        $jobs = Job::where('featured', true)->where('status', 'active')->latest()->get();
 
         return view('jobs.result', compact('jobs'));
     }
@@ -103,7 +90,6 @@ class JobController extends Controller
     {
         $employer = Employer::with('user')->findOrFail($id);
 
-        // Only allow users to view their own employer profile
         if (!Auth::user()->employer || Auth::user()->employer->id != $employer->id) {
             return redirect('/home')->with('error', 'You can only view your own profile.');
         }
@@ -116,7 +102,6 @@ class JobController extends Controller
     {
         $employer = Employer::with('user')->findOrFail($id);
 
-        // Only the owner can see all jobs (including inactive)
         if (Auth::user()->employer && Auth::user()->employer->id === $employer->id) {
             $jobs = $employer->jobs()->latest()->get();
             return view('jobs.allJobs', compact('jobs', 'employer'));
@@ -146,7 +131,9 @@ class JobController extends Controller
             })->where('status', 'approved')->get();
 
             $viewType = 'employer';
+
         } else {
+
             $pendingInterviews = Interview::with([
                 'application.job.employer',
                 'application.user'
@@ -293,9 +280,7 @@ class JobController extends Controller
 
     public function storeApplication(Request $request, Job $job)
     {
-        $existingApplication = Application::where('job_id', $job->id)
-            ->where('user_id', Auth::id())
-            ->first();
+        $existingApplication = Application::where('job_id', $job->id)->where('user_id', Auth::id())->first();
 
         if ($existingApplication) {
             return redirect()->back()->with('error', 'You have already applied to this job.');
@@ -306,10 +291,8 @@ class JobController extends Controller
             'message' => 'nullable|string|max:500'
         ]);
 
-        // Store the file and get the path
         $resumePath = $request->file('resume')->store('resumes', 'public');
 
-        // Create the application with the correct resume_path
         $application = Application::create([
             'job_id' => $job->id,
             'user_id' => Auth::id(),
@@ -318,7 +301,6 @@ class JobController extends Controller
             'resume_path' => $resumePath,
         ]);
 
-        // Create interview record
         Interview::create([
             'application_id' => $application->id,
             'status' => 'pending',
@@ -330,7 +312,7 @@ class JobController extends Controller
     {
         $user = Auth::user();
         $applicant = $user->applicant;
-        $credentials = $user->credentials; // Add this line
+        $credentials = $user->credentials;
 
         return view('jobs.profileApplicant', compact('user', 'applicant', 'credentials'));
     }
