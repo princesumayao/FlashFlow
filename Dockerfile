@@ -50,6 +50,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Nginx config
 RUN rm -f /etc/nginx/conf.d/default.conf
+RUN mkdir -p /etc/nginx/conf.d
+
 
 RUN printf '%s\n' \
  'server {' \
