@@ -41,8 +41,10 @@ COPY . /var/www/html
 # Install PHP packages
 RUN composer install --prefer-dist --optimize-autoloader --no-interaction
 
-# Create SQLite database and run migrations
-RUN touch /var/www/html/database/database.sqlite \
+# Create SQLite database directory and file, then run migrations
+RUN mkdir -p /var/www/html/database \
+ && touch /var/www/html/database/database.sqlite \
+ && chmod 664 /var/www/html/database/database.sqlite \
  && php artisan migrate --force \
  && php artisan config:cache \
  && php artisan route:cache \
