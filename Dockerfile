@@ -1,4 +1,4 @@
-# Use official PHP image with Apache
+# Use official PHP 8.2 image with Apache
 FROM php:8.2-apache
 
 # Install system dependencies
@@ -10,9 +10,10 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
+    sqlite3 \
     npm \
     nodejs \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    && docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl bcmath gd
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
