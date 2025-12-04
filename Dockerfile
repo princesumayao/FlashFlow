@@ -35,19 +35,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /var/www/html
 
-# Copy composer files
-COPY composer.json composer.lock /var/www/html/
+# Copy entire application first
+COPY . /var/www/html
 
 # Install PHP packages
 RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
-# Copy frontend files and build
-COPY package.json package-lock.json /var/www/html/
-RUN npm ci --production=false
-RUN npm run build
-
-# Copy rest of app
-COPY . /var/www/html
+# Install and build frontend
+RUN npm ci --production=false && npm run build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
