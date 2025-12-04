@@ -33,4 +33,10 @@ RUN php artisan config:clear && \
     php artisan route:clear && \
     php artisan view:clear
 
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Replace PORT placeholder in nginx config at runtime
+CMD sed -i "s/\${PORT}/$PORT/g" /etc/nginx/nginx.conf && supervisord -c /etc/supervisor/conf.d/supervisord.conf
+
 CMD ["php-fpm"]

@@ -1,51 +1,50 @@
-2025-12-04T14:48:42.409688815Z #13 48.71 /bin/bash /usr/src/php/ext/zip/libtool --tag=CC --mode=install cp ./zip.la /usr/src/php/ext/zip/modules
-2025-12-04T14:48:42.409691005Z #13 48.73 cp ./.libs/zip.so /usr/src/php/ext/zip/modules/zip.so
-2025-12-04T14:48:42.409693115Z #13 48.74 cp ./.libs/zip.lai /usr/src/php/ext/zip/modules/zip.la
-2025-12-04T14:48:42.409695725Z #13 48.76 PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/zip/modules
-2025-12-04T14:48:42.409697885Z #13 48.76 ----------------------------------------------------------------------
-2025-12-04T14:48:42.409700665Z #13 48.76 Libraries have been installed in:
-2025-12-04T14:48:42.409702775Z #13 48.76    /usr/src/php/ext/zip/modules
-2025-12-04T14:48:42.409704925Z #13 48.76
-2025-12-04T14:48:42.409707365Z #13 48.76 If you ever happen to want to link against installed libraries
-2025-12-04T14:48:42.409709475Z #13 48.76 in a given directory, LIBDIR, you must either use libtool, and
-2025-12-04T14:48:42.409711575Z #13 48.76 specify the full pathname of the library, or use the `-LLIBDIR'
-2025-12-04T14:48:42.409713675Z #13 48.76 flag during linking and do at least one of the following:
-2025-12-04T14:48:42.409728526Z #13 48.76    - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
-2025-12-04T14:48:42.409735786Z #13 48.76      during execution
-2025-12-04T14:48:42.409740286Z #13 48.76    - add LIBDIR to the `LD_RUN_PATH' environment variable
-2025-12-04T14:48:42.409743846Z #13 48.76      during linking
-2025-12-04T14:48:42.409747166Z #13 48.76    - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
-2025-12-04T14:48:42.409750506Z #13 48.76    - have your system administrator add LIBDIR to `/etc/ld.so.conf'
-2025-12-04T14:48:42.409754146Z #13 48.76
-2025-12-04T14:48:42.409757787Z #13 48.76 See any operating system documentation about shared libraries for
-2025-12-04T14:48:42.409760387Z #13 48.76 more information, such as the ld(1) and ld.so(8) manual pages.
-2025-12-04T14:48:42.409762556Z #13 48.76 ----------------------------------------------------------------------
-2025-12-04T14:48:42.409764937Z #13 48.76
-2025-12-04T14:48:42.409767117Z #13 48.76 Build complete.
-2025-12-04T14:48:42.409769257Z #13 48.76 Don't forget to run 'make test'.
-2025-12-04T14:48:42.409771377Z #13 48.77
-2025-12-04T14:48:42.409773497Z #13 48.78 + strip --strip-all modules/zip.so
-2025-12-04T14:48:42.51350059Z #13 48.81 Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20220829/
-2025-12-04T14:48:42.513518021Z #13 48.88 find . -name \*.gcno -o -name \*.gcda | xargs rm -f
-2025-12-04T14:48:42.513520931Z #13 48.89 find . -name \*.lo -o -name \*.o -o -name \*.dep | xargs rm -f
-2025-12-04T14:48:42.686344731Z #13 48.89 find . -name \*.la -o -name \*.a | xargs rm -f
-2025-12-04T14:48:42.686364292Z #13 48.90 find . -name \*.so | xargs rm -f
-2025-12-04T14:48:42.686367062Z #13 48.90 find . -name .libs -a -type d|xargs rm -rf
-2025-12-04T14:48:42.686369272Z #13 48.90 rm -f libphp.la      modules/* libs/*
-2025-12-04T14:48:42.686371352Z #13 48.91 rm -f ext/opcache/jit/zend_jit_x86.c
-2025-12-04T14:48:42.686373552Z #13 48.91 rm -f ext/opcache/jit/zend_jit_arm64.c
-2025-12-04T14:48:42.686375752Z #13 48.91 rm -f ext/opcache/minilua
-2025-12-04T14:48:43.436285176Z #13 CANCELED
-2025-12-04T14:48:43.465536239Z ------
-2025-12-04T14:48:43.46555804Z  > [backend 6/8] COPY --from=frontend /app/public/dist ./public/dist:
-2025-12-04T14:48:43.46556349Z ------
-2025-12-04T14:48:43.466355911Z Dockerfile:26
-2025-12-04T14:48:43.466371342Z --------------------
-2025-12-04T14:48:43.466375692Z   24 |
-2025-12-04T14:48:43.466380042Z   25 |     # Copy built frontend from Stage 1
-2025-12-04T14:48:43.466384412Z   26 | >>> COPY --from=frontend /app/public/dist ./public/dist
-2025-12-04T14:48:43.466388012Z   27 |
-2025-12-04T14:48:43.466392192Z   28 |     # Install PHP dependencies
-2025-12-04T14:48:43.466395982Z --------------------
-2025-12-04T14:48:43.466400533Z error: failed to solve: failed to compute cache key: failed to calculate checksum of ref tvq06fpb8xixr81won4u2ykbn::b6ajemwuq1v02z7tg5vsugwu3: "/app/public/dist": not found
-2025-12-04T14:48:43.485339373Z error: exit status 1
+2025-12-04T14:57:50.012910278Z #23 8.912    INFO  Discovering packages.
+2025-12-04T14:57:50.012915608Z #23 8.912
+2025-12-04T14:57:50.218375294Z #23 8.921   laravel/tinker ........................................................ DONE
+2025-12-04T14:57:50.218396654Z #23 8.933   nesbot/carbon ......................................................... DONE
+2025-12-04T14:57:50.218405494Z #23 8.946   nunomaduro/termwind ................................................... DONE
+2025-12-04T14:57:50.218411485Z #23 8.956
+2025-12-04T14:57:50.218418505Z #23 8.966 53 packages you are using are looking for funding.
+2025-12-04T14:57:50.218423805Z #23 8.966 Use the `composer fund` command to find out more!
+2025-12-04T14:58:19.943900697Z #23 DONE 38.8s
+2025-12-04T14:58:20.099316097Z
+2025-12-04T14:58:20.099337548Z #24 [backend 8/8] RUN php artisan config:clear &&     php artisan route:clear &&     php artisan view:clear
+2025-12-04T14:58:20.246194702Z #24 0.297
+2025-12-04T14:58:20.246232413Z #24 0.297    INFO  Configuration cache cleared successfully.
+2025-12-04T14:58:20.246237283Z #24 0.297
+2025-12-04T14:58:20.374320261Z #24 0.426
+2025-12-04T14:58:20.374338952Z #24 0.426    INFO  Route cache cleared successfully.
+2025-12-04T14:58:20.374343321Z #24 0.426
+2025-12-04T14:58:20.527473802Z #24 0.579
+2025-12-04T14:58:20.527493323Z #24 0.579    INFO  Compiled views cleared successfully.
+2025-12-04T14:58:20.527497843Z #24 0.579
+2025-12-04T14:58:22.4206996Z #24 DONE 2.5s
+2025-12-04T14:58:22.583405579Z
+2025-12-04T14:58:22.583423009Z #25 exporting to docker image format
+2025-12-04T14:58:22.58342764Z #25 exporting layers
+2025-12-04T14:58:27.5039921Z #25 exporting layers 5.1s done
+2025-12-04T14:58:27.606835081Z #25 exporting manifest sha256:029b2ec3532aae59179e9b5e148c1b2956fab68b36ad89b866f602d14dacee9a 0.1s done
+2025-12-04T14:58:27.606866961Z #25 exporting config sha256:bd0d8683c2a6bac3c1bd77850256eda01b6f8807f2f0b1bd596a827b865e0846 0.0s done
+2025-12-04T14:58:29.131307831Z #25 DONE 6.7s
+2025-12-04T14:58:29.131356553Z
+2025-12-04T14:58:29.131360623Z #26 exporting cache to client directory
+2025-12-04T14:58:29.131362683Z #26 preparing build cache for export
+2025-12-04T14:58:52.192831084Z #26 writing cache image manifest sha256:5a0a9d7b5fd8974bc7e2a7d3e026f2669b44e64954257c9169323080051d40e0 0.0s done
+2025-12-04T14:58:52.192855404Z #26 DONE 22.9s
+2025-12-04T14:58:53.219281394Z Pushing image to registry...
+2025-12-04T14:59:00.912091176Z Upload succeeded
+2025-12-04T14:59:22.407226362Z ==> Deploying...
+2025-12-04T14:59:35.281440827Z [04-Dec-2025 14:59:35] NOTICE: fpm is running, pid 1
+2025-12-04T14:59:35.282810702Z [04-Dec-2025 14:59:35] NOTICE: ready to handle connections
+2025-12-04T15:01:57.059382358Z ==> No open ports detected, continuing to scan...
+2025-12-04T15:02:06.744009633Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-12-04T15:05:45.11989028Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T15:07:17.8445419Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T15:08:56.291717326Z ==> No open HTTP ports detected on 0.0.0.0, continuing to scan...
+2025-12-04T15:09:06.850315467Z ==> Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
+2025-12-04T15:14:26.510032876Z ==> Timed out: Port scan timeout reached, no open HTTP ports detected. If you don't need to receive public HTTP traffic, create a private service instead.
+2025-12-04T15:14:26.680454882Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-12-04T15:14:32.657932095Z [04-Dec-2025 15:14:32] NOTICE: Finishing ...
+2025-12-04T15:16:03.252185815Z [04-Dec-2025 15:16:03] NOTICE: fpm is running, pid 1
+2025-12-04T15:16:03.345050789Z [04-Dec-2025 15:16:03] NOTICE: ready to handle connections
+2025-12-04T15:16:03.375884988Z [04-Dec-2025 15:16:03] NOTICE: Finishing ...
