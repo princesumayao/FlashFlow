@@ -46,9 +46,7 @@ class RegisteredController extends Controller
             'location' => $validated['location'],
         ]);
 
-        Auth::login($user);
-
-        return redirect('/jobs/' . $user->employer->id)->with('success', 'Account created successfully!');
+        return redirect('/')->with('success', 'Account created successfully! Please log in.');
     }
 
     public function createApplicant()
@@ -79,9 +77,7 @@ class RegisteredController extends Controller
             'user_id' => $user->id,
         ]);
 
-        Auth::login($user);
-
-        return redirect('/home')->with('success', 'Account created successfully!');
+        return redirect('/')->with('success', 'Account created successfully!');
     }
     public function editProfile()
     {
@@ -157,7 +153,7 @@ class RegisteredController extends Controller
         }
 
         if ($user->user_type === 'employer') {
-            return redirect('/jobs/' . $user->employer->id)->with('success', 'Profile updated successfully!');
+            return redirect('/employer/' . $user->employer->id)->with('success', 'Profile updated successfully!');
         } else {
             return redirect('/applicant/profile')->with('success', 'Profile updated successfully!');
         }

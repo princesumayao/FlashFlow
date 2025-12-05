@@ -1,14 +1,41 @@
 <x-layout>
-    <div class="min-h-screen flex items-center justify-center px-4 py-8 -mt-15">
+    <div class="min-h-screen flex items-center justify-center px-4 py-8 lg:-mt-30 -mt-15">
         {{--Pamblur chat--}}
         <div class="fixed inset-0 bg-black/10 backdrop-blur-md z-0"></div>
         <img src="{{ Vite::asset('resources/images/left-design.svg') }}" alt="" class="hidden lg:block fixed left-20 top-1/2 -translate-y-2/3 w-110 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
         <img src="{{ Vite::asset('resources/images/right-design.svg') }}" alt="" class="hidden lg:block fixed right-20 top-2/3 -translate-y-1/2 w-110 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
 
-        <div class="bg-gradient-to-br from-black/30 via-black/10 to-black/90 rounded-2xl border border-zinc-400 shadow-2xl p-6 md:p-8 lg:p-10 max-w-6xl w-full relative z-10">
-            <img src="{{ Vite::asset('resources/images/testlogo.svg') }}" alt="Logo" class="mx-auto mb-2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain" />
+        @if ($errors->any())
+            <div class="fixed bottom-6 right-6 z-50 w-full max-w-sm px-4 animate-fade-in">
+                <div class="bg-red-900/80 backdrop-blur-sm border border-red-700/50 text-red-100 px-5 py-4 rounded-lg shadow-xl">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex-1">
+                            <p class="font-semibold text-sm mb-2 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                </svg>
+                                Validation Errors
+                            </p>
+                            <ul class="text-xs space-y-1 pl-6">
+                                @foreach ($errors->all() as $error)
+                                    <li class="list-disc">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <button type="button" onclick="this.parentElement.parentElement.parentElement.remove()" class="text-red-300 hover:text-red-100 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        <div class="bg-gradient-to-br from-black/30 via-black/10 to-black/90 rounded-2xl border border-zinc-400 shadow-2xl p-4 md:p-6 lg:p-8 max-w-6xl w-full relative z-10">
+        <img src="{{ Vite::asset('resources/images/testlogo.svg') }}" alt="Logo" class="mx-auto mb-2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain" />
             <div class="text-center text-white font-extrabold text-2xl md:text-3xl mb-2 drop-shadow-lg tracking-wide">FlashFlow</div>
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6 md:mb-8 text-center">Create Applicant Account</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 md:mb-6 text-center">Create Applicant Account</h2>
 
             <form action="/registerApplicant" method="POST" class="space-y-4 md:space-y-5">
                 @csrf

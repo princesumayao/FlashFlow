@@ -235,7 +235,7 @@ class JobController extends Controller
             'featured' => $request->has('featured') ? true : false,
         ]);
 
-        return redirect("/jobs/{$job->employer_id}")->with('success', 'Job updated successfully!');
+        return redirect("/employer/{$job->employer_id}")->with('success', 'Job updated successfully!');
     }
 
     public function destroy(Job $job)

@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="relative scrollbar-hide overflow-x-hidden">
+    <div class="relative scrollbar-hide overflow-x-hidden lg:-mt-5 -mt-10">
         <img src="{{ Vite::asset('resources/images/left-design.svg') }}" alt="" class="hidden lg:block fixed left-40 top-1/2 -translate-y-2/3 w-110 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
         <img src="{{ Vite::asset('resources/images/right-design.svg') }}" alt="" class="hidden lg:block fixed right-40 top-2/3 -translate-y-1/2 w-110 h-auto object-contain opacity-20 pointer-events-none select-none z-0" />
 
